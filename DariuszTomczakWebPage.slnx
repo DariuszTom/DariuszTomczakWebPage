@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DariuszTomczakWebpage.Shared/DariuszTomczakWebpage.Shared.csproj" />
+  <Project Path="DariuszTomczakWebPage/DariuszTomczakWebPage.csproj" />
+</Solution>

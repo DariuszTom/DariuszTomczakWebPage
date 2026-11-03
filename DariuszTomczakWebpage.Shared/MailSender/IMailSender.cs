@@ -1,0 +1,12 @@
+﻿using System.Runtime.InteropServices;
+using System.Security;
+
+namespace SharedLibrary.Misc.MessegeSender
+{
+    public interface IMailSender
+    {
+        public Task MailConfig(string addres, int port, SecureString pw, string login);
+        public void CreateMail(string subject, StringBuilder body);
+        public Task SendMail(string[] sendTo, [Optional] params string[] sendCC);
+    }
+}
