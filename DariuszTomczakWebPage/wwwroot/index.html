@@ -8,28 +8,55 @@
     <base href="/" />
     <link rel="preload" id="webassembly" />
     <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="fonts/fonts.css" />
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="css/splash.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
     <link href="DariuszTomczakWebPage.styles.css" rel="stylesheet" />
     <script type="importmap"></script>
 </head>
 
 <body>
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
-    </div>
+    <main id="splash" aria-busy="true">
+        <div class="splash-inner">
+            <h1 class="splash-sr">Dariusz Tomczak, Senior Full Stack Developer</h1>
+            <div class="splash-board-wrap" aria-hidden="true">
+                <div class="splash-board"></div>
+            </div>
+            <div class="splash-meta">
+                <p class="splash-subtitle" aria-hidden="true">Senior Full Stack Developer</p>
+                <div class="splash-progress" aria-hidden="true"><div></div></div>
+            </div>
+            <div class="splash-footer">
+                <ul class="splash-sections" aria-label="Loading the site">
+                    <li><span class="bar" aria-hidden="true"></span><span>CV</span><span class="splash-sr">loading</span></li>
+                    <li><span class="bar" aria-hidden="true"></span><span>Projects</span><span class="splash-sr">loading</span></li>
+                    <li><span class="bar" aria-hidden="true"></span><span>Contact</span><span class="splash-sr">loading</span></li>
+                </ul>
+                <div class="splash-actions">
+                    <a class="splash-link" href="https://github.com/DariuszTom" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile, opens in a new tab">
+                        <span class="icon"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="#0F2744"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></span>
+                        <span>GitHub</span>
+                    </a>
+                    <a class="splash-link" href="https://linkedin.com/in/dariusztomczak-137890166/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile, opens in a new tab">
+                        <span class="icon"><svg aria-hidden="true" width="15" height="15" viewBox="3 3 18 18" fill="#0F2744"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.834 1.635-1.8 3.37-1.8 3.601 0 4.267 2.37 4.267 4.892v4.931zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452z"></path></svg></span>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="app"></div>
 
     <div id="blazor-error-ui">
         An unhandled error has occurred.
         <a href="." class="reload">Reload</a>
         <span class="dismiss">🗙</span>
     </div>
+    <script src="js/splash.js"></script>
     <script src="_framework/blazor.webassembly#[.{fingerprint}].js"></script>
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
 </body>

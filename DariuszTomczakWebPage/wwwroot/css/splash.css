@@ -1,0 +1,205 @@
+#splash {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    overflow: auto;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    background: linear-gradient(180deg, #1E3A5F 0%, #0F2744 100%);
+    color: #FFFFFF;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --splash-accent: #F59E0B;
+    transition: opacity 400ms ease;
+}
+
+    #splash.splash-hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+.splash-inner {
+    width: 100%;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.splash-sr {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.splash-board-wrap {
+    container-type: inline-size;
+    width: 100%;
+}
+
+.splash-board {
+    display: grid;
+    grid-template-columns: repeat(var(--splash-cols, 7), minmax(0, 1fr));
+    gap: 1.4cqi;
+}
+
+.splash-tile {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    border-radius: 6px;
+    background: #EEF1F5;
+    box-shadow: inset 0 -3px 0 rgba(15, 39, 68, 0.14), 0 12px 24px -10px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .splash-tile::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 50%;
+        background: #FFFFFF;
+    }
+
+    .splash-tile::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        height: 2px;
+        margin-top: -1px;
+        background: #0F2744;
+        opacity: 0.85;
+    }
+
+    .splash-tile span {
+        position: relative;
+        font-weight: 700;
+        font-size: var(--splash-font, 10cqi);
+        line-height: 1;
+        color: #9CA3AF;
+    }
+
+.splash-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.splash-subtitle {
+    margin: 0;
+    font-size: clamp(14px, 1.6vw, 18px);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--splash-accent);
+    opacity: 0;
+    transition: opacity 500ms ease;
+}
+
+#splash.splash-done .splash-subtitle {
+    opacity: 1;
+}
+
+.splash-progress {
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.14);
+    overflow: hidden;
+}
+
+    .splash-progress div {
+        height: 3px;
+        width: 0;
+        background: var(--splash-accent);
+        transition: width 120ms linear;
+    }
+
+.splash-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px 24px;
+}
+
+.splash-sections {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+}
+
+    .splash-sections li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #A9BBD0;
+    }
+
+        .splash-sections li .bar {
+            width: 4px;
+            height: 16px;
+            border-radius: 2px;
+            background: #3F5F86;
+        }
+
+        .splash-sections li.ready {
+            color: #FFFFFF;
+        }
+
+            .splash-sections li.ready .bar {
+                background: var(--splash-accent);
+            }
+
+.splash-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+}
+
+.splash-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    padding: 0 14px 0 8px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: #FFFFFF !important;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+    .splash-link .icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        background: var(--splash-accent);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
