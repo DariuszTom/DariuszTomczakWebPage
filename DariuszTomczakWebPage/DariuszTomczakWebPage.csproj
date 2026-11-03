@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\ReceptyOksNew\ReceptyOksSolution\ReceptyOks.BlazorComponents\ReceptyOks.BlazorComponents.csproj" />
     <ProjectReference Include="..\DariuszTomczakWebpage.Shared\DariuszTomczakWebpage.Shared.csproj" />
   </ItemGroup>
 
