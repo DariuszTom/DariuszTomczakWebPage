@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Splash screen – Dariusz Tomczak</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<main style="min-height: 100vh; box-sizing: border-box; display: flex; align-items: center; justify-content: center; padding: 48px 24px; background: linear-gradient(180deg, #1E3A5F 0%, #0F2744 100%); color: #FFFFFF; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <div style="width: 100%; max-width: 720px; display: flex; flex-direction: column; gap: 24px">
+    <h1 style="position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0">Dariusz Tomczak, Senior Full Stack Developer</h1>
+    <div aria-hidden="true" style="container-type: inline-size; width: 100%">
+      <div style="display: grid; grid-template-columns: repeat({{cols}}, minmax(0, 1fr)); gap: 1.4cqi">
+        <sc-for list="{{tiles}}" as="t" hint-placeholder-count="14">
+          <div style="position: relative; aspect-ratio: 3 / 4; border-radius: 6px; background: #EEF1F5; box-shadow: inset 0 -3px 0 rgba(15, 39, 68, 0.14), 0 12px 24px -10px rgba(0, 0, 0, 0.45); overflow: hidden; display: flex; align-items: center; justify-content: center">
+            <div style="position: absolute; left: 0; right: 0; top: 0; height: 50%; background: #FFFFFF"></div>
+            <span style="position: relative; font-weight: 700; font-size: {{fontSize}}; line-height: 1; color: {{t.color}}">{{t.ch}}</span>
+            <div style="position: absolute; left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; background: #0F2744; opacity: 0.85"></div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 14px">
+      <p aria-hidden="true" style="margin: 0; font-size: clamp(14px, 1.6vw, 18px); font-weight: 500; text-transform: uppercase; letter-spacing: 2px; color: {{accent}}; opacity: {{subOpacity}}; transition: opacity 500ms ease">Senior Full Stack Developer</p>
+      <div aria-hidden="true" style="height: 3px; border-radius: 2px; background: rgba(255, 255, 255, 0.14); overflow: hidden">
+        <div style="height: 3px; width: {{progress}}%; background: {{accent}}; transition: width 120ms linear"></div>
+      </div>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px">
+      <ul aria-label="Loading the site" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 28px">
+        <sc-for list="{{sections}}" as="s" hint-placeholder-count="3">
+          <li style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: {{s.labelColor}}">
+            <span aria-hidden="true" style="width: 4px; height: 16px; border-radius: 2px; background: {{s.barColor}}"></span>
+            <span>{{s.label}}</span>
+            <span style="position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">{{s.srText}}</span>
+          </li>
+        </sc-for>
+      </ul>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+        <a href="https://github.com/DariuszTom" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile, opens in a new tab" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px 0 8px; box-sizing: border-box; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.18); color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 500">
+          <span style="width: 28px; height: 28px; border-radius: 6px; background: {{accent}}; display: inline-flex; align-items: center; justify-content: center">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F2744" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7l-5 5 5 5"></path><path d="M16 7l5 5-5 5"></path><path d="M13.5 4l-3 16"></path></svg>
+          </span>
+          <span>GitHub</span>
+        </a>
+        <a href="https://linkedin.com/in/dariusztomczak-137890166/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile, opens in a new tab" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 14px 0 8px; box-sizing: border-box; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.18); color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 500">
+          <span style="width: 28px; height: 28px; border-radius: 6px; background: {{accent}}; display: inline-flex; align-items: center; justify-content: center">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0F2744" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="2"></circle><path d="M6 16c.6-1.5 1.7-2.3 3-2.3s2.4.8 3 2.3"></path><path d="M14.5 10h3.5"></path><path d="M14.5 13.5h3.5"></path></svg>
+          </span>
+          <span>LinkedIn</span>
+        </a>
+        <button type="button" onClick="{{onButton}}" style="min-height: 44px; padding: 0 22px; border-radius: 6px; border: 1.5px solid {{accent}}; background: {{btnBg}}; color: {{btnColor}}; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">{{btnLabel}}</button>
+      </div>
+    </div>
+  </div>
+</main>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"line1":{"editor":"text","default":"DARIUSZ","section":"Tablica"},"line2":{"editor":"text","default":"TOMCZAK","section":"Tablica"},"duration":{"editor":"range","min":1.5,"max":5,"step":0.5,"unit":"s","default":3,"section":"Animacja"},"glyphs":{"editor":"enum","options":["Assembler","Hex + Assembler","Hex","Litery"],"default":"Assembler","section":"Animacja"},"accent":{"editor":"color","options":["#F59E0B","#FBBF24","#38BDF8"],"default":"#F59E0B","section":"Kolor"},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(...args) {
+    super(...args);
+    this.state = { tick: 0 };
+    this.skipFn = () => this.skip();
+    this.restartFn = () => this.start();
+  }
+
+  componentDidMount() {
+    this.start();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  componentDidUpdate(prevProps) {
+    const p = this.props;
+    if (prevProps.line1 !== p.line1 || prevProps.line2 !== p.line2 || prevProps.duration !== p.duration || prevProps.glyphs !== p.glyphs) {
+      this.start();
+    }
+  }
+
+  layout() {
+    const a = String(this.props.line1 ?? 'DARIUSZ').toUpperCase().slice(0, 14);
+    const b = String(this.props.line2 ?? 'TOMCZAK').toUpperCase().slice(0, 14);
+    let rows = [a, b].filter((r) => r.length > 0);
+    if (rows.length === 0) rows = [' '];
+    const cols = Math.max(1, ...rows.map((r) => r.length));
+    const mode = this.props.glyphs ?? 'Assembler';
+    const base = mode === 'Hex' || mode === 'Litery' ? 12 : 20;
+    const cells = [];
+    let total = 0;
+    rows.forEach((row, r) => {
+      for (let i = 0; i < cols; i++) {
+        const start = i + r * 2;
+        const settle = base + i * 3 + r * 5 + ((i * 7 + r * 3) % 4);
+        total = Math.max(total, settle + 2);
+        cells.push({ i, r, start, settle, target: row[i] || ' ' });
+      }
+    });
+    return { cols, cells, total, mode };
+  }
+
+  reducedMotion() {
+    try {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  start() {
+    clearInterval(this.timer);
+    const total = this.layout().total;
+    if (this.reducedMotion()) {
+      this.setState({ tick: total });
+      return;
+    }
+    const seconds = Math.max(1, Number(this.props.duration ?? 3) || 3);
+    const ms = (seconds * 1000) / total;
+    const t0 = Date.now();
+    this.setState({ tick: 0 });
+    this.timer = setInterval(() => {
+      const next = Math.min(total, Math.floor((Date.now() - t0) / ms));
+      if (next >= total) clearInterval(this.timer);
+      if (next !== this.state.tick) this.setState({ tick: next });
+    }, Math.max(16, Math.floor(ms / 2)));
+  }
+
+  skip() {
+    clearInterval(this.timer);
+    this.setState({ tick: this.layout().total });
+  }
+
+  renderVals() {
+    const accent = this.props.accent ?? '#F59E0B';
+    const L = this.layout();
+    const tick = this.state.tick;
+    const done = tick >= L.total;
+    const LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789&#+';
+    const HEX = '0123456789ABCDEF';
+    const ASM = [
+      ['MOV EAX,1', 'XOR ECX,ECX', 'CMP EAX,ECX', 'JNZ 4F2Ah', 'CALL 1C40h', 'SHL EAX,2'],
+      ['LEA ESI,[EBP-8]', 'INC EDI', 'TEST AL,AL', 'POP EBX', 'ADD ESP,8', 'RET']
+    ];
+    const hexEnd = L.mode === 'Hex + Assembler' ? 8 : 0;
+    const asmStep = 3;
+
+    const tiles = L.cells.map((c) => {
+      let ch = ' ';
+      let settled = false;
+      let color = '#9CA3AF';
+      if (done || tick >= c.settle) {
+        ch = c.target;
+        settled = true;
+      } else if (tick >= c.start) {
+        const noise = tick * 5 + c.i * 11 + c.r * 17;
+        if (L.mode === 'Litery') {
+          ch = LETTERS[noise % LETTERS.length];
+        } else if (L.mode === 'Hex' || tick < hexEnd) {
+          ch = HEX[noise % HEX.length];
+        } else {
+          const lines = ASM[c.r % ASM.length];
+          const line = lines[Math.floor((tick - hexEnd) / asmStep) % lines.length];
+          ch = line[c.i] || ' ';
+          color = '#B45309';
+        }
+      }
+      return { ch: ch === ' ' ? '\u00A0' : ch, color: settled ? '#1E3A5F' : color };
+    });
+
+    const marks = [0.4, 0.72, 1];
+    const sections = ['CV', 'Projects', 'Contact'].map((label, k) => {
+      const ready = done || tick >= Math.round(L.total * marks[k]);
+      return {
+        label,
+        srText: ready ? 'loaded' : 'loading',
+        labelColor: ready ? '#FFFFFF' : '#A9BBD0',
+        barColor: ready ? accent : '#3F5F86'
+      };
+    });
+
+    const fontSize = ((100 - (L.cols - 1) * 1.4) / L.cols * 0.82).toFixed(2) + 'cqi';
+    const progress = done ? 100 : Math.round((tick / L.total) * 100);
+
+    return {
+      tiles,
+      cols: L.cols,
+      fontSize,
+      sections,
+      accent,
+      progress,
+      subOpacity: done ? 1 : 0,
+      btnLabel: done ? 'Enter' : 'Skip',
+      btnBg: done ? accent : 'transparent',
+      btnColor: done ? '#0F2744' : accent,
+      onButton: done ? this.restartFn : this.skipFn
+    };
+  }
+}
+</script>
+</body>
+</html>
