@@ -130,7 +130,7 @@ GitHub Actions ──(krótkożyjący token OIDC)──► Microsoft Entra ID
 - **Tożsamość**: user-assigned managed identity z *federated credential* ufającą wyłącznie
   `repo:DariuszTom/DariuszTomczakWebPage:environment:Master_ENV` (nazwa environmentu w GitHubie to `Master_ENV`).
   Forki, inne repozytoria i inne gałęzie nie dostaną tokenu.
-- **GitHub Environment `production`**: ograniczenie do gałęzi `master`, opcjonalnie wymagane
+- **GitHub Environment `Master_ENV`**: ograniczenie do gałęzi `master`, opcjonalnie wymagane
   ręczne zatwierdzenie (required reviewers).
 - **Najmniejsze uprawnienia**: rola przypisana tylko na scope zasobu Static Web App
   (nie na subskrypcji / resource group).
@@ -142,6 +142,20 @@ GitHub Actions ──(krótkożyjący token OIDC)──► Microsoft Entra ID
   domyślnie `contents: read`.
 - **Utwardzenie akcji**: akcje przypięte do commit SHA, Dependabot dla `github-actions`.
 - **Pull requesty**: tylko build + test, bez dostępu do Azure (brak `id-token` i environment).
+
+### Analiza kodu i sekretów (GitHub Actions)
+
+| Workflow | Narzędzie | Kiedy | Wynik |
+|---|---|---|---|
+| `codeql.yml` | CodeQL (`csharp`, `actions`, `javascript-typescript`), zestaw `security-and-quality`, `build-mode: none` | push/PR na `master`, co tydzień | Code scanning (repo publiczne) albo artefakt SARIF (repo prywatne) |
+| `codacy.yml` | Codacy Analysis CLI | push/PR na `master`, co tydzień | jw.; z sekretem `CODACY_PROJECT_TOKEN` wyniki trafiają też do panelu Codacy |
+| `secrets-scan.yml` | TruffleHog | push/PR: nowe commity; co tydzień i ręcznie: cała historia | job kończy się błędem przy znalezionym sekrecie (zweryfikowanym lub nieznanym) |
+| `dependabot.yml` | Dependabot | co tydzień | grupowane PR dla GitHub Actions i NuGet |
+
+Zasady: wszystkie akcje przypięte do SHA, `permissions: contents: read` domyślnie,
+`persist-credentials: false` przy checkout. Repo jest prywatne, więc upload do Code scanning
+wymaga GitHub Code Security; bez niej SARIF jest dostępny jako artefakt joba.
+Opcjonalnie: włączyć **Secret Protection / push protection** w ustawieniach repo (blokuje push z sekretem).
 
 ## Struktura `profile.json` (szkic)
 
