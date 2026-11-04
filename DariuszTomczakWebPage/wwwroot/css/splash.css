@@ -13,7 +13,13 @@
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --splash-accent: #F59E0B;
     transition: opacity 400ms ease;
+    /* A scrollbar appearing (or being restyled by later CSS) would shrink the board mid-animation. */
+    scrollbar-width: none;
 }
+
+    #splash::-webkit-scrollbar {
+        display: none;
+    }
 
     #splash.splash-hidden {
         opacity: 0;
@@ -103,6 +109,7 @@
     margin: 0;
     font-size: clamp(14px, 1.6vw, 18px);
     font-weight: 500;
+    line-height: 1.4;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--splash-accent);

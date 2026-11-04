@@ -26,8 +26,8 @@ Styl wizualny oparty na CV (`docs/Resume-Darek-Tomczak v3.10.html`), spójny ze 
 | LinkedIn | Brak bezpośredniej integracji (API nie udostępnia doświadczenia/skilli, scraping łamie regulamin). Opcjonalny import z eksportu danych LinkedIn (ZIP z CSV) |
 | Kontakt | Same linki: LinkedIn, GitHub. Bez e-maila, telefonu, formularza i backendu |
 | Projekty | Ręcznie wybrane, w `profile.json` |
-| Azure SQL | **Nieużywana w v1.** Statyczny JSON jest darmowy, wersjonowany w git i nie ma endpointu do ataku. SWA *Database connections* (Data API builder) zostały wycofane 30.11.2025, więc baza wymagałaby własnego API (Azure Function), czyli dodatkowej
-| Shared (`MailSender`, `AnthropicAgent`) |
+| Azure SQL | **Nieużywana w v1.** Statyczny JSON jest darmowy, wersjonowany w git i nie ma endpointu do ataku. SWA *Database connections* (Data API builder) zostały wycofane 30.11.2025, więc baza wymagałaby własnego API (Azure Function), czyli dodatkowej powierzchni ataku. Istniejąca baza `receptyoksdb` należy do projektu ReceptyOKS i nie jest współdzielona. Ewentualnie później: osobna baza, rate limiting w API i Managed Identity |
+| Projekt `DariuszTomczakWebpage.Shared` | Biblioteka klas i modeli (`Models/Profile.cs`), referencjonowana przez WASM. Zawiera też `MailSender`/`AnthropicAgent` na przyszłe API. Sekrety (klucze API, SMTP) nigdy nie trafiają do WASM, tylko do API po stronie serwera. Do rozważenia: wydzielenie AI/Mail do osobnego projektu, żeby WASM nie pobierał tych paczek |
 
 ## Wygląd i stack UI
 
@@ -65,7 +65,7 @@ Tak. **MudBlazor pokrywa wszystko**, czego potrzebujemy. Dodatkowe biblioteki UI
 | SEO (WASM nie renderuje HTML na serwerze) | statyczne `<meta>` description, Open Graph, `JSON-LD` (`schema.org/Person`) w `index.html` | nie |
 | Testy komponentów *(opcjonalnie)* | **bUnit** + xUnit w osobnym projekcie testowym (workflow już ma `dotnet test`) | tak, tylko w testach |
 
-Do **usunięcia**:
+**Usunięte** (✅):
 - **Bootstrap** (`wwwroot/lib/bootstrap`, link w `index.html`) – dubluje MudBlazor i koliduje ze stylami,
 - `NavMenu`, `MainLayout.razor.css` z szablonu, `Counter`, `Weather`, `sample-data`.
 
@@ -155,6 +155,8 @@ GitHub Actions ──(krótkożyjący token OIDC)──► Microsoft Entra ID
 Zasady: wszystkie akcje przypięte do SHA, `permissions: contents: read` domyślnie,
 `persist-credentials: false` przy checkout. Repo jest prywatne, więc upload do Code scanning
 wymaga GitHub Code Security; bez niej SARIF jest dostępny jako artefakt joba.
+Konfiguracja Codacy: `.codacy.yml` (wykluczenia: `bin`, `obj`, `wwwroot/lib`, `Splash/vendor`, `*.min.*`)
+oraz `.eslintrc.json` (ESLint 8 w Codacy wymaga konfiguracji w repo).
 Opcjonalnie: włączyć **Secret Protection / push protection** w ustawieniach repo (blokuje push z sekretem).
 
 ## Struktura `profile.json` (szkic)
@@ -220,7 +222,7 @@ Opcjonalnie: włączyć **Secret Protection / push protection** w ustawieniach r
 | 7 | `section-projects` | Sekcja Projects: karty projektów (opis, technologie, linki) | 3, 4 |
 | 8 | `section-contact` | Sekcja Contact: LinkedIn, GitHub | 3, 4 |
 | 9 | `swa-config` | `staticwebapp.config.json`: nagłówki bezpieczeństwa, fallback SPA, cache | – |
-| 10 | `deploy-workflow` | Job `deploy` w `.github/workflows/dotnet-desktop.yml`: OIDC (`azure/login`) → token SWA pobierany w locie → `static-web-apps-deploy` z artefaktu Release; environment `production`; akcje przypięte do SHA + Dependabot | 9 |
+| 10 | `deploy-workflow` | Job `deploy` w `.github/workflows/dotnet-desktop.yml`: OIDC (`azure/login`) → token SWA pobierany w locie → `static-web-apps-deploy` z artefaktu Release; environment `Master_ENV`; akcje przypięte do SHA + Dependabot | 9 |
 | 11 | `linkedin-import` | *(opcjonalnie)* Skrypt: eksport LinkedIn (CSV) → `profile.json` | 1 |
 | 12 | `seo-meta` | `index.html`: tytuł, meta description, Open Graph, JSON-LD `Person` | – |
 | 13 | `print-cv` | Styl `@media print` dla sekcji CV + przycisk "Pobierz PDF" | 6 |
@@ -245,7 +247,7 @@ Region SWA określa tylko lokalizację metadanych; pliki strony są serwowane z 
 użytkownicy z Polski dostają je z najbliższego węzła. Tożsamość jest w Poland Central. Gdy West Europe zacznie
 przyjmować zasoby, można przenieść SWA (nowy zasób + przypisanie roli).
 
-Zmienne GitHub (environment `production`): `AZURE_CLIENT_ID=50d33859-43d6-4059-a77e-db4c3cdcb574`,
+Zmienne GitHub (environment `Master_ENV`): `AZURE_CLIENT_ID=50d33859-43d6-4059-a77e-db4c3cdcb574`,
 `AZURE_TENANT_ID=206881a2-87f2-4c02-a4e9-56585b0486ad`, `AZURE_SUBSCRIPTION_ID=09b0d360-f88f-4ef7-b4e7-4e5ee5efa705`,
 `SWA_NAME=swa-dtomczak-web`, `SWA_RESOURCE_GROUP=rg-dtomczak-web`.
 
@@ -253,12 +255,12 @@ Zmienne GitHub (environment `production`): `AZURE_CLIENT_ID=50d33859-43d6-4059-a
 
 Kroki 1–3 i 7: **wykonane** (patrz wyżej).
 
-1. Utworzyć
+1. Utworzyć zasób **Azure Static Web App (Free)** z deployment source *Other*
    (bez automatycznego workflow i bez tokenu w GitHubie).
 2. Utworzyć **user-assigned managed identity** i nadać jej rolę *Contributor* **tylko na zasobie SWA**.
 3. Dodać do tożsamości **federated credential** (GitHub Actions):
-   organizacja `DariuszTom`, repo `DariuszTomczakWebPage`, typ *Environment*, nazwa `production`.
-4. W GitHubie utworzyć environment **`production`** (deployment branch: `master`, opcjonalnie required reviewers)
+   organizacja `DariuszTom`, repo `DariuszTomczakWebPage`,    typ *Environment*, nazwa `Master_ENV`.
+   4. W GitHubie utworzyć environment **`Master_ENV`** (deployment branch: `master`, opcjonalnie required reviewers)
    i dodać **zmienne** (nie sekrety): `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`,
    `SWA_NAME`, `SWA_RESOURCE_GROUP`.
 5. Uzupełnić `profile.json` prawdziwymi danymi (lub wygenerować z eksportu LinkedIn).

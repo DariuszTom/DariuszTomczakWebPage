@@ -1,0 +1,11 @@
+---
+# Third-party and generated files are not analysed.
+exclude_paths:
+  - "**/bin/**"
+  - "**/obj/**"
+  - "**/wwwroot/lib/**"
+  - "**/Splash/vendor/**"
+  - "**/*.min.js"
+  - "**/*.min.css"
+  - "**/*.map"
+  - "docs/**"

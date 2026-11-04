@@ -1,0 +1,196 @@
+{
+  "person": {
+    "name": "Dariusz Tomczak",
+    "title": "Senior Full Stack Developer",
+    "summary": "Senior Full Stack Developer with expertise in C#, Java, and cloud technologies, specializing in application modernization and DevOps practices. Experienced in containerizing applications with Docker, migrating to cloud platforms (Nomad, AWS), and building robust CI/CD pipelines. Strong background in financial services with a passion for leveraging AI to streamline development workflows.",
+    "location": "Kraków, Poland",
+    "photoUrl": null
+  },
+  "experience": [
+    {
+      "company": "IG Group",
+      "role": "Senior Full Stack Developer",
+      "start": "2024-02",
+      "end": null,
+      "location": null,
+      "highlights": [
+        "Dockerizing Java applications and migrating from VMs to Nomad cloud for scalability.",
+        "Improving CI/CD pipelines with automation and deployment reliability.",
+        "Collaborating with stakeholders to refine requirements and manage tasks in Jira.",
+        "Developing automated tests using Gherkin for robust test coverage.",
+        "Creating an AI code review workflow using MCP servers connected to GitLab and Atlassian APIs.",
+        "Creating an Agentic AI workflow to automate running BDD tests.",
+        "Migrating CI/CD pipelines from VM-based infrastructure to Amazon Web Services (AWS) for improved scalability and deployment reliability.",
+        "Developing an MCP server that connects a chat agent to the UI using WinAppDriver and FlaUI for automated desktop application interaction."
+      ],
+      "technologies": [ "Java", "C#", "Docker", "Nomad", "AWS", "Gherkin", "MCP" ]
+    },
+    {
+      "company": "IG Group",
+      "role": "C# Developer",
+      "start": "2022-03",
+      "end": "2024-01",
+      "location": null,
+      "highlights": [
+        "Optimized and enhanced the internal trading application.",
+        "Migrated from .NET Framework 4.8 to .NET 6 for improved performance.",
+        "Developed unit tests to ensure code reliability and maintainability.",
+        "Conducted code reviews to enforce best practices and architectural guidelines.",
+        "Redesigned data acquisition for scalability, efficiency, and real-time processing.",
+        "Transitioned from a monolithic architecture to microservices and REST APIs.",
+        "Provided technical support and troubleshooting for end-users."
+      ],
+      "technologies": [ "C#", ".NET", "REST API", "Microservices" ]
+    },
+    {
+      "company": "State Street",
+      "role": "Senior Associate - Developer",
+      "start": "2019-06",
+      "end": "2022-02",
+      "location": null,
+      "highlights": [
+        "Developed business applications in Access and Excel VBA for Ireland Fund Accounting.",
+        "Designed and supported SQL database applications.",
+        "Built standalone applications with WinForms and WPF (XAML) in .NET.",
+        "Created VSTO tools for Microsoft Office in Visual Studio.",
+        "Analyzed business requirements to develop effective solutions.",
+        "Maintained and debugged existing Python applications."
+      ],
+      "technologies": [ "C#", "WPF", "WinForms", "VBA", "SQL", "Python" ]
+    },
+    {
+      "company": "State Street",
+      "role": "Operations Specialist - VBA Developer",
+      "start": "2018-10",
+      "end": "2019-06",
+      "location": null,
+      "highlights": [
+        "Conducted GMAS Remediation to assess business applications, macros, and Python scripts for quality, performance, and security.",
+        "Developed business applications in Access and Excel VBA.",
+        "Created VSTO tools for Microsoft Office in Visual Studio.",
+        "Provided VBA training for the IRE department.",
+        "Designed and supported SQL database applications using SQLite."
+      ],
+      "technologies": [ "VBA", "VSTO", "SQLite", "Python" ]
+    },
+    {
+      "company": "State Street",
+      "role": "Senior Fund Accountant",
+      "start": "2018-01",
+      "end": "2018-10",
+      "location": null,
+      "highlights": [
+        "Developed macros in Excel VBA as a member of the Macro Support Group."
+      ],
+      "technologies": [ "VBA" ]
+    },
+    {
+      "company": "State Street",
+      "role": "Fund Accountant",
+      "start": "2016-05",
+      "end": "2018-01",
+      "location": null,
+      "highlights": [],
+      "technologies": []
+    }
+  ],
+  "skills": [
+    {
+      "category": "Skills",
+      "primary": true,
+      "items": [ "C#", "Java", "Python", "SQL", "VBA", ".NET", "Docker", "Blazor", "MAUI", "WPF", "REST API", "gRPC", "Gherkin", "AWS", "MCP (Model Context Protocol)", "HTML/CSS", "Azure", "Terraform" ]
+    },
+    {
+      "category": "Tools",
+      "items": [ "Visual Studio, VS Code", "SQL Server Management Studio", "Microsoft Office", "Visio and Lucidchart", "Amazon CLI", "Linux (Ubuntu, Kali)", "JIRA", "BitBucket, GitHub, GitLab", "IntelliJ IDEA" ]
+    },
+    {
+      "category": "Industry Knowledge",
+      "items": [ "Process Automation", "Data Analysis", "Accounting", "Agile Methodologies", "Object-Oriented Programming", "DB Development", "Root Cause Analysis", "Lean", "Financial Markets", "MVVM", "UML", "SecDevOps" ]
+    }
+  ],
+  "education": [
+    {
+      "school": "Wyższa Szkoła Biznesu - National Louis University",
+      "degree": "Postgraduate Degree, DevOps",
+      "start": "2025",
+      "end": "2026",
+      "location": null
+    },
+    {
+      "school": "Wyższa Szkoła Biznesu - National Louis University",
+      "degree": "Postgraduate Degree, Business Application Programming",
+      "start": "2021",
+      "end": "2022",
+      "location": null
+    },
+    {
+      "school": "Uniwersytet Ekonomiczny w Krakowie",
+      "degree": "Master of Science, Economy and Public Administration",
+      "start": "2013",
+      "end": "2016",
+      "location": null
+    }
+  ],
+  "certifications": [],
+  "languages": [
+    { "name": "Polish", "level": "Native" },
+    { "name": "English", "level": "Advanced" }
+  ],
+  "projects": [
+    {
+      "name": "DariuszTomczakWebPage",
+      "description": "This site: Blazor WebAssembly on .NET 10 with MudBlazor, hosted on Azure Static Web Apps and deployed from GitHub Actions with OIDC (no stored secrets).",
+      "technologies": [ "Blazor", ".NET 10", "MudBlazor", "Azure", "GitHub Actions" ],
+      "repoUrl": null,
+      "liveUrl": null
+    },
+    {
+      "name": "ReceptyOks",
+      "description": "Recipe application with a containerized .NET API on Azure Container Apps and Azure SQL.",
+      "technologies": [ "C#", ".NET", "Azure Container Apps", "Azure SQL" ],
+      "repoUrl": "https://github.com/DariuszTom/ReceptyOksSolution",
+      "liveUrl": null
+    },
+    {
+      "name": "Microsoft Agent Framework Showcase",
+      "description": "Experiments with building AI agents in .NET using Microsoft Agent Framework.",
+      "technologies": [ "C#", ".NET", "AI agents" ],
+      "repoUrl": "https://github.com/DariuszTom/MicrosoftAgentFrameworkShowCase",
+      "liveUrl": null
+    },
+    {
+      "name": "WinForms with Blazor",
+      "description": "Showcase of hosting Blazor components inside a WinForms desktop application.",
+      "technologies": [ "Blazor", "WinForms", ".NET" ],
+      "repoUrl": "https://github.com/DariuszTom/ShowCaseWinFormsWithBlazor",
+      "liveUrl": null
+    },
+    {
+      "name": "Docker ASP.NET Backend Service",
+      "description": "Virtualization and containerization of an IT environment (DevOps postgraduate studies).",
+      "technologies": [ "ASP.NET Core", "Docker" ],
+      "repoUrl": "https://github.com/DariuszTom/DockerAsp.net.BackendService",
+      "liveUrl": null
+    },
+    {
+      "name": "gRPC Demo",
+      "description": "gRPC services with a client example.",
+      "technologies": [ "C#", "gRPC" ],
+      "repoUrl": "https://github.com/DariuszTom/GrprcDemo",
+      "liveUrl": null
+    },
+    {
+      "name": "AsyncCommand for XAML",
+      "description": "Async commands for WPF projects.",
+      "technologies": [ "C#", "WPF", "MVVM" ],
+      "repoUrl": "https://github.com/DariuszTom/AsyncCommandForXAML",
+      "liveUrl": null
+    }
+  ],
+  "photos": [],
+  "links": {
+    "linkedIn": "https://www.linkedin.com/in/dariusztomczak-137890166/",
+    "gitHub": "https://github.com/DariuszTom"
+  }
+}
