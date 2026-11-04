@@ -1,5 +1,39 @@
-﻿@page "/not-found"
+@page "/not-found"
 @layout MainLayout
+@inject IJSRuntime JS
 
-<h3>Not Found</h3>
-<p>Sorry, the content you are looking for does not exist.</p>
+<PageTitle>Page not found | Dariusz Tomczak</PageTitle>
+
+<section class="not-found" aria-labelledby="not-found-title">
+    <MudContainer MaxWidth="MaxWidth.Small" Class="not-found__content">
+        <span class="not-found__code" aria-hidden="true">404</span>
+
+        <h1 id="not-found-title" class="not-found__title">Page not found</h1>
+
+        <p class="not-found__text">
+            The page you are looking for may have been moved, renamed, or is no longer available.
+            Please check the address or return to the home page.
+        </p>
+
+        <div class="not-found__actions">
+            <MudButton Href="/"
+                       Variant="Variant.Filled"
+                       StartIcon="@Icons.Material.Filled.Home"
+                       Size="Size.Large"
+                       Class="not-found__btn not-found__btn--primary">
+                Back to home
+            </MudButton>
+            <MudButton OnClick="GoBack"
+                       Variant="Variant.Outlined"
+                       StartIcon="@Icons.Material.Filled.ArrowBack"
+                       Size="Size.Large"
+                       Class="not-found__btn not-found__btn--secondary">
+                Previous page
+            </MudButton>
+        </div>
+    </MudContainer>
+</section>
+
+@code {
+    private async Task GoBack() => await JS.InvokeVoidAsync("history.back");
+}
