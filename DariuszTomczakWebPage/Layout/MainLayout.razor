@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @implements IAsyncDisposable
 @inject IJSRuntime JS
+@inject IOptions<LinksOptions> Links
 
 <MudThemeProvider @ref="_themeProvider" Theme="_theme" @bind-IsDarkMode="_isDark" />
 <MudPopoverProvider />
@@ -30,14 +31,20 @@
                 </svg>
                 <span class="logo__name">Dariusz Tomczak</span>
             </a>
-            <a class="icon-btn" href="https://github.com/DariuszTom" target="_blank" rel="noopener noreferrer"
-               aria-label="GitHub profile, opens in a new tab" title="GitHub">
-                <Icon Name="github" Size="22" />
-            </a>
-            <a class="icon-btn" href="https://www.linkedin.com/in/dariusz-tomczak-137890166/" target="_blank" rel="noopener noreferrer"
-               aria-label="LinkedIn profile, opens in a new tab" title="LinkedIn">
-                <Icon Name="linkedin" Size="22" />
-            </a>
+            @if (SafeUrl.Https(Links.Value.GitHub) is { } gitHub)
+            {
+                <a class="icon-btn" href="@gitHub" target="_blank" rel="noopener noreferrer"
+                   aria-label="GitHub profile, opens in a new tab" title="GitHub">
+                    <Icon Name="github" Size="22" />
+                </a>
+            }
+            @if (SafeUrl.Https(Links.Value.LinkedIn) is { } linkedIn)
+            {
+                <a class="icon-btn" href="@linkedIn" target="_blank" rel="noopener noreferrer"
+                   aria-label="LinkedIn profile, opens in a new tab" title="LinkedIn">
+                    <Icon Name="linkedin" Size="22" />
+                </a>
+            }
             <button type="button" class="icon-btn" @onclick="ToggleTheme"
                     aria-label="@(_isDark ? "Switch to light theme" : "Switch to dark theme")"
                     title="@(_isDark ? "Light theme" : "Dark theme")">

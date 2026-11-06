@@ -62,10 +62,7 @@ void MergePerson()
     // The LinkedIn summary is only a fallback: the curated one is usually better worded.
     if (string.IsNullOrWhiteSpace((string?)person["summary"]) && Value(row, "Summary") is { } summary)
         person["summary"] = summary;
-
-    var links = profile["links"]!.AsObject();
-    var gitHub = Regex.Match(row.GetValueOrDefault("Websites") ?? "", @"https://github\.com/[^\]\s,]+");
-    if (string.IsNullOrWhiteSpace((string?)links["gitHub"]) && gitHub.Success) links["gitHub"] = gitHub.Value;
+    // Site links (LinkedIn, GitHub, CV) live in wwwroot/appsettings.json, not in profile.json.
 }
 
 void MergeExperience()

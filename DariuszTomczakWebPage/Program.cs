@@ -11,6 +11,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddMudServices();
 builder.Services.Configure<ProfileOptions>(builder.Configuration.GetSection(ProfileOptions.SectionName));
+builder.Services.Configure<LinksOptions>(builder.Configuration.GetSection(LinksOptions.SectionName));
 builder.Services.AddScoped<IProfileService, ProfileService>();
 
 await builder.Build().RunAsync();
