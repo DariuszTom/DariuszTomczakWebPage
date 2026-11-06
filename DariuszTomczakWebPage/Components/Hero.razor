@@ -43,6 +43,16 @@
                     {
                         <li><Icon Name="briefcase" Size="18" /><span>@current.Company</span></li>
                     }
+                    @if (LinkedIn is not null)
+                    {
+                        <li class="no-print">
+                            <a class="hero__badge" href="@LinkedIn" target="_blank" rel="noopener noreferrer"
+                               aria-label="LinkedIn profile, opens in a new tab">
+                                <span class="hero__badge-logo" aria-hidden="true">in</span>
+                                <span>View profile</span>
+                            </a>
+                        </li>
+                    }
                 </ul>
             }
         </div>
@@ -56,6 +66,8 @@
     [Parameter] public Profile? Profile { get; set; }
 
     private string? CvUrl => SafeUrl.Https(Links.Value.Cv);
+
+    private string? LinkedIn => SafeUrl.Https(Links.Value.LinkedIn);
 
     private async Task PrintAsync() => await JS.InvokeVoidAsync("site.printPage");
 }
