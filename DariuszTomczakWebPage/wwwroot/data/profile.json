@@ -12,7 +12,7 @@
       "role": "Senior Full Stack Developer",
       "start": "2024-02",
       "end": null,
-      "location": null,
+      "location": "Kraków, Poland",
       "highlights": [
         "Dockerizing Java applications and migrating from VMs to Nomad cloud for scalability.",
         "Improving CI/CD pipelines with automation and deployment reliability.",
@@ -23,14 +23,22 @@
         "Migrating CI/CD pipelines from VM-based infrastructure to Amazon Web Services (AWS) for improved scalability and deployment reliability.",
         "Developing an MCP server that connects a chat agent to the UI using WinAppDriver and FlaUI for automated desktop application interaction."
       ],
-      "technologies": [ "Java", "C#", "Docker", "Nomad", "AWS", "Gherkin", "MCP" ]
+      "technologies": [
+        "Java",
+        "C#",
+        "Docker",
+        "Nomad",
+        "AWS",
+        "Gherkin",
+        "MCP"
+      ]
     },
     {
       "company": "IG Group",
-      "role": "C# Developer",
+      "role": ".NET Developer",
       "start": "2022-03",
-      "end": "2024-01",
-      "location": null,
+      "end": "2024-02",
+      "location": "Kraków, Poland",
       "highlights": [
         "Optimized and enhanced the internal trading application.",
         "Migrated from .NET Framework 4.8 to .NET 6 for improved performance.",
@@ -40,14 +48,19 @@
         "Transitioned from a monolithic architecture to microservices and REST APIs.",
         "Provided technical support and troubleshooting for end-users."
       ],
-      "technologies": [ "C#", ".NET", "REST API", "Microservices" ]
+      "technologies": [
+        "C#",
+        ".NET",
+        "REST API",
+        "Microservices"
+      ]
     },
     {
       "company": "State Street",
       "role": "Senior Associate - Developer",
       "start": "2019-06",
       "end": "2022-02",
-      "location": null,
+      "location": "Kraków, Poland",
       "highlights": [
         "Developed business applications in Access and Excel VBA for Ireland Fund Accounting.",
         "Designed and supported SQL database applications.",
@@ -56,14 +69,21 @@
         "Analyzed business requirements to develop effective solutions.",
         "Maintained and debugged existing Python applications."
       ],
-      "technologies": [ "C#", "WPF", "WinForms", "VBA", "SQL", "Python" ]
+      "technologies": [
+        "C#",
+        "WPF",
+        "WinForms",
+        "VBA",
+        "SQL",
+        "Python"
+      ]
     },
     {
       "company": "State Street",
       "role": "Operations Specialist - VBA Developer",
       "start": "2018-10",
       "end": "2019-06",
-      "location": null,
+      "location": "Kraków, Poland",
       "highlights": [
         "Conducted GMAS Remediation to assess business applications, macros, and Python scripts for quality, performance, and security.",
         "Developed business applications in Access and Excel VBA.",
@@ -71,25 +91,32 @@
         "Provided VBA training for the IRE department.",
         "Designed and supported SQL database applications using SQLite."
       ],
-      "technologies": [ "VBA", "VSTO", "SQLite", "Python" ]
+      "technologies": [
+        "VBA",
+        "VSTO",
+        "SQLite",
+        "Python"
+      ]
     },
     {
       "company": "State Street",
       "role": "Senior Fund Accountant",
       "start": "2018-01",
-      "end": "2018-10",
-      "location": null,
+      "end": "2018-09",
+      "location": "Kraków, Poland",
       "highlights": [
         "Developed macros in Excel VBA as a member of the Macro Support Group."
       ],
-      "technologies": [ "VBA" ]
+      "technologies": [
+        "VBA"
+      ]
     },
     {
       "company": "State Street",
       "role": "Fund Accountant",
       "start": "2016-05",
       "end": "2018-01",
-      "location": null,
+      "location": "Kraków, Poland",
       "highlights": [],
       "technologies": []
     }
@@ -98,15 +125,89 @@
     {
       "category": "Skills",
       "primary": true,
-      "items": [ "C#", "Java", "Python", "SQL", "VBA", ".NET", "Docker", "Blazor", "MAUI", "WPF", "REST API", "gRPC", "Gherkin", "AWS", "MCP (Model Context Protocol)", "HTML/CSS", "Azure", "Terraform" ]
+      "items": [
+        "C#",
+        "Java",
+        "Python",
+        "SQL",
+        "VBA",
+        "VB.NET",
+        ".NET",
+        "Blazor",
+        "MAUI",
+        "WPF",
+        "WinForms",
+        "XAML",
+        "Xamarin.Forms",
+        "WCF",
+        "Entity Framework",
+        "REST API",
+        "gRPC",
+        "HTML/CSS",
+        "Docker",
+        "AWS",
+        "Azure",
+        "Terraform",
+        "Nomad",
+        "CI/CD",
+        "Gherkin",
+        "MCP (Model Context Protocol)"
+      ]
+    },
+    {
+      "category": "Databases",
+      "items": [
+        "Microsoft SQL Server",
+        "T-SQL",
+        "SQLite",
+        "MySQL"
+      ]
+    },
+    {
+      "category": "AI tools",
+      "items": [
+        "Claude Code",
+        "Claude Agent SDK",
+        "Anthropic Claude",
+        "Cursor AI"
+      ]
     },
     {
       "category": "Tools",
-      "items": [ "Visual Studio, VS Code", "SQL Server Management Studio", "Microsoft Office", "Visio and Lucidchart", "Amazon CLI", "Linux (Ubuntu, Kali)", "JIRA", "BitBucket, GitHub, GitLab", "IntelliJ IDEA" ]
+      "items": [
+        "Visual Studio, VS Code",
+        "SQL Server Management Studio",
+        "Microsoft Office",
+        "Visio and Lucidchart",
+        "Amazon CLI",
+        "Linux (Ubuntu, Kali)",
+        "Git",
+        "JIRA",
+        "BitBucket, GitHub, GitLab",
+        "IntelliJ IDEA",
+        "Bloomberg Terminal"
+      ]
     },
     {
       "category": "Industry Knowledge",
-      "items": [ "Process Automation", "Data Analysis", "Accounting", "Agile Methodologies", "Object-Oriented Programming", "DB Development", "Root Cause Analysis", "Lean", "Financial Markets", "MVVM", "UML", "SecDevOps" ]
+      "items": [
+        "Process Automation",
+        "Unit Testing",
+        "Test Automation",
+        "Data Analysis",
+        "Accounting",
+        "Agile Methodologies",
+        "Object-Oriented Programming",
+        "DB Development",
+        "Root Cause Analysis",
+        "Lean",
+        "Financial Markets",
+        "MVVM",
+        "UML",
+        "XML",
+        "Mobile Application Development",
+        "SecDevOps"
+      ]
     }
   ],
   "education": [
@@ -130,67 +231,221 @@
       "start": "2013",
       "end": "2016",
       "location": null
+    },
+    {
+      "school": "Wyższa Szkoła Biznesu - National Louis University",
+      "degree": "Bachelor's degree",
+      "start": null,
+      "end": "2013",
+      "location": null
     }
   ],
-  "certifications": [],
+  "certifications": [
+    {
+      "name": "Xamarin.Forms Essential Training",
+      "issuer": "LinkedIn Learning",
+      "date": "2022-01",
+      "url": "https://www.linkedin.com/learning/certificates/561c10640d0d7de93703c43f931142d17306333a19f53418d34042f5e128efa1"
+    },
+    {
+      "name": "Introduction to Blazor",
+      "issuer": "LinkedIn Learning",
+      "date": "2022-01",
+      "url": "https://www.linkedin.com/learning/certificates/aeba7861d1172ffb183b8eac9339ce2090f884add2d4028bd0928fef53ff4852"
+    },
+    {
+      "name": "Learning Entity Framework Core",
+      "issuer": "LinkedIn Learning",
+      "date": "2021-10",
+      "url": "https://www.linkedin.com/learning/certificates/473302e33495f8b13e095bb325a42e6a5885bb5260e30f5565ac3b6ccf4b5fe3"
+    },
+    {
+      "name": "C#: Advanced Practices",
+      "issuer": "LinkedIn Learning",
+      "date": "2021-06",
+      "url": "https://www.linkedin.com/learning/certificates/663617fc02763400de2c139342dff8b660fd7e983ca6db627bbeb82d5c3ad9d3"
+    },
+    {
+      "name": "Windows Presentation Foundation: 3 Events and the Event Model",
+      "issuer": "LinkedIn Learning",
+      "date": "2021-05",
+      "url": null
+    },
+    {
+      "name": "XML Essential Training",
+      "issuer": "LinkedIn Learning",
+      "date": "2021-03",
+      "url": "https://www.linkedin.com/learning/certificates/9c75644521b7d76a9d96939b6b69207436c64c698a3a44394257773bf972f47e"
+    },
+    {
+      "name": "Microsoft XAML: 1 Core Concepts",
+      "issuer": "LinkedIn Learning",
+      "date": "2021-03",
+      "url": "https://www.linkedin.com/learning/certificates/04f4ffda2896f4c5c9e10edc7a4cd8ecfaa3962c9430d286ee8f7b20689be25c"
+    },
+    {
+      "name": "Windows Presentation Foundation: Build Dramatic Desktop Applications",
+      "issuer": "LinkedIn Learning",
+      "date": "2021-03",
+      "url": null
+    },
+    {
+      "name": "Become a SQL Developer",
+      "issuer": "LinkedIn Learning",
+      "date": "2021-02",
+      "url": "https://www.linkedin.com/learning/certificates/9a6e78797f3e3f2affee8e79228b7ad4880b519b7b62c10c2d4859da65aea24d"
+    },
+    {
+      "name": "DESIGN RULES: Principles + Practices for Great UI Design",
+      "issuer": "Udemy",
+      "date": "2021-02",
+      "url": "https://www.udemy.com/certificate/UC-eac552f3-ee27-417f-aecd-5c936e90607d/"
+    },
+    {
+      "name": "Learning SQL Programming",
+      "issuer": "LinkedIn Learning",
+      "date": "2021-01",
+      "url": null
+    },
+    {
+      "name": "Agile Principles and Methodologies",
+      "issuer": "Skillsoft",
+      "date": "2020-11",
+      "url": "https://skillsoft.digitalbadges.skillsoft.com/1e19f3c3-6c86-411a-b8f7-6a11350efd84"
+    },
+    {
+      "name": "Six Sigma and Lean: Foundations and Principles",
+      "issuer": "Skillsoft",
+      "date": "2020-11",
+      "url": null
+    },
+    {
+      "name": "Lean Practitioner",
+      "issuer": "State Street",
+      "date": "2017-09",
+      "url": null
+    }
+  ],
   "languages": [
-    { "name": "Polish", "level": "Native" },
-    { "name": "English", "level": "Advanced" }
+    {
+      "name": "Polish",
+      "level": "Native"
+    },
+    {
+      "name": "English",
+      "level": "Professional working"
+    },
+    {
+      "name": "Russian",
+      "level": "Elementary"
+    }
   ],
   "projects": [
     {
       "name": "DariuszTomczakWebPage",
       "description": "This site: Blazor WebAssembly on .NET 10 with MudBlazor, hosted on Azure Static Web Apps and deployed from GitHub Actions with OIDC (no stored secrets).",
-      "technologies": [ "Blazor", ".NET 10", "MudBlazor", "Azure", "GitHub Actions" ],
+      "technologies": [
+        "Blazor",
+        ".NET 10",
+        "MudBlazor",
+        "Azure",
+        "GitHub Actions"
+      ],
       "repoUrl": null,
       "liveUrl": null
     },
     {
       "name": "ReceptyOks",
       "description": "Recipe application with a containerized .NET API on Azure Container Apps and Azure SQL.",
-      "technologies": [ "C#", ".NET", "Azure Container Apps", "Azure SQL" ],
+      "technologies": [
+        "C#",
+        ".NET",
+        "Azure Container Apps",
+        "Azure SQL"
+      ],
       "repoUrl": "https://github.com/DariuszTom/ReceptyOksSolution",
       "liveUrl": null
     },
     {
       "name": "Microsoft Agent Framework Showcase",
       "description": "Experiments with building AI agents in .NET using Microsoft Agent Framework.",
-      "technologies": [ "C#", ".NET", "AI agents" ],
+      "technologies": [
+        "C#",
+        ".NET",
+        "AI agents"
+      ],
       "repoUrl": "https://github.com/DariuszTom/MicrosoftAgentFrameworkShowCase",
       "liveUrl": null
     },
     {
       "name": "WinForms with Blazor",
       "description": "Showcase of hosting Blazor components inside a WinForms desktop application.",
-      "technologies": [ "Blazor", "WinForms", ".NET" ],
+      "technologies": [
+        "Blazor",
+        "WinForms",
+        ".NET"
+      ],
       "repoUrl": "https://github.com/DariuszTom/ShowCaseWinFormsWithBlazor",
       "liveUrl": null
     },
     {
       "name": "Docker ASP.NET Backend Service",
       "description": "Virtualization and containerization of an IT environment (DevOps postgraduate studies).",
-      "technologies": [ "ASP.NET Core", "Docker" ],
+      "technologies": [
+        "ASP.NET Core",
+        "Docker"
+      ],
       "repoUrl": "https://github.com/DariuszTom/DockerAsp.net.BackendService",
       "liveUrl": null
     },
     {
       "name": "gRPC Demo",
       "description": "gRPC services with a client example.",
-      "technologies": [ "C#", "gRPC" ],
+      "technologies": [
+        "C#",
+        "gRPC"
+      ],
       "repoUrl": "https://github.com/DariuszTom/GrprcDemo",
       "liveUrl": null
     },
     {
       "name": "AsyncCommand for XAML",
       "description": "Async commands for WPF projects.",
-      "technologies": [ "C#", "WPF", "MVVM" ],
+      "technologies": [
+        "C#",
+        "WPF",
+        "MVVM"
+      ],
       "repoUrl": "https://github.com/DariuszTom/AsyncCommandForXAML",
+      "liveUrl": null
+    },
+    {
+      "name": "The Chronicles Of Myrtana: Archolos",
+      "description": "Community tester of a large fan-made expansion for the game Gothic II.",
+      "technologies": [
+        "QA",
+        "Testing"
+      ],
+      "repoUrl": null,
+      "liveUrl": "https://kronikimyrtany.pl/"
+    },
+    {
+      "name": "OneTrackerApp",
+      "description": "CRUD application with a Xamarin.Forms mobile front end and a Blazor Server web front end, backed by a WCF service and SQL Server with EF Core.",
+      "technologies": [
+        "Xamarin.Forms",
+        "Blazor Server",
+        "WCF",
+        "SQL Server",
+        "EF Core"
+      ],
+      "repoUrl": null,
       "liveUrl": null
     }
   ],
   "photos": [],
   "links": {
-    "linkedIn": "https://www.linkedin.com/in/dariusztomczak-137890166/",
+    "linkedIn": "https://www.linkedin.com/in/dariusz-tomczak-137890166/",
     "gitHub": "https://github.com/DariuszTom"
   }
 }

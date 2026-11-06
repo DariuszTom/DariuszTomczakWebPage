@@ -223,7 +223,7 @@ Opcjonalnie: włączyć **Secret Protection / push protection** w ustawieniach r
 | 8 | `section-contact` | Sekcja Contact: LinkedIn, GitHub | 3, 4 |
 | 9 | `swa-config` | `staticwebapp.config.json`: nagłówki bezpieczeństwa, fallback SPA, cache | – |
 | 10 | `deploy-workflow` | Job `deploy` w `.github/workflows/dotnet-desktop.yml`: OIDC (`azure/login`) → token SWA pobierany w locie → `static-web-apps-deploy` z artefaktu Release; environment `Master_ENV`; akcje przypięte do SHA + Dependabot | 9 |
-| 11 | `linkedin-import` | *(opcjonalnie)* Skrypt: eksport LinkedIn (CSV) → `profile.json` | 1 |
+| 11 | `linkedin-import` | ✅ `tools/LinkedInImport.cs` (eksport CSV → merge do `profile.json`): `dotnet run tools/LinkedInImport.cs -- <folder-eksportu>`. Idempotentny; nadpisuje daty/role/certyfikaty/języki, dodaje nowe skille (grupa "More" do ręcznego przeniesienia), projekty, edukację. Pomijane skille: `tools/LinkedInImport.ignore`. Eksport jest w `.gitignore` – nigdy go nie commitować | 1 |
 | 12 | `seo-meta` | `index.html`: tytuł, meta description, Open Graph, JSON-LD `Person` | – |
 | 13 | `print-cv` | Styl `@media print` dla sekcji CV + przycisk "Pobierz PDF" | 6 |
 | 14 | `ui-tests` | *(opcjonalnie)* projekt testowy bUnit dla sekcji | 5–8 |
@@ -263,7 +263,7 @@ Kroki 1–3 i 7: **wykonane** (patrz wyżej).
    4. W GitHubie utworzyć environment **`Master_ENV`** (deployment branch: `master`, opcjonalnie required reviewers)
    i dodać **zmienne** (nie sekrety): `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`,
    `SWA_NAME`, `SWA_RESOURCE_GROUP`.
-5. Uzupełnić `profile.json` prawdziwymi danymi (lub wygenerować z eksportu LinkedIn).
+5. ✅ `profile.json` uzupełniony z eksportu LinkedIn (11.05.2026). Po zmianach na LinkedIn: nowy eksport → `tools/LinkedInImport.cs` → przejrzeć `git diff`.
 6. *(opcjonalnie)* Podpiąć własną domenę w SWA (ewentualnie przez Cloudflare Free).
 7. Ustawić **budżet z alertem** w Azure Cost Management.
 8. Dodać zdjęcia do `wwwroot/img/` (WebP, bez EXIF).

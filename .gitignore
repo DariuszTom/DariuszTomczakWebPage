@@ -480,3 +480,8 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+# Private LinkedIn data export - never commit
+**/*LinkedInDataExport*
+**/Basic_LinkedInDataExport*
+
