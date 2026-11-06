@@ -1,0 +1,65 @@
+@inject IJSRuntime JS
+@inject Microsoft.Extensions.Options.IOptions<ProfileOptions> Options
+
+<section id="top" class="hero" aria-labelledby="hero-title">
+    <div class="container hero__grid">
+        <div class="hero__text">
+            <p class="hero__eyebrow">@(Profile?.Person.Title ?? "Senior Full Stack Developer")</p>
+            <h1 id="hero-title" tabindex="-1">@(Profile?.Person.Name ?? "Dariusz Tomczak")</h1>
+            <span class="hero__bar" aria-hidden="true"></span>
+            @if (Profile is not null)
+            {
+                <p class="hero__summary">@(Profile.Person.Tagline ?? Profile.Person.Summary)</p>
+            }
+            <div class="hero__actions no-print">
+                <a class="btn btn--accent" href="#projects">
+                    View my work
+                    <Icon Name="arrow" Size="18" />
+                </a>
+                @if (CvUrl is not null)
+                {
+                    <a class="btn btn--outline" href="@CvUrl" target="_blank" rel="noopener noreferrer"
+                       aria-label="Download CV, opens in a new tab">
+                        <Icon Name="download" Size="18" />
+                        Download CV
+                    </a>
+                }
+                else
+                {
+                    <button type="button" class="btn btn--outline" @onclick="PrintAsync">
+                        <Icon Name="download" Size="18" />
+                        Download CV
+                    </button>
+                }
+            </div>
+            @if (Profile is not null)
+            {
+                <ul class="hero__meta">
+                    @if (!string.IsNullOrWhiteSpace(Profile.Person.Location))
+                    {
+                        <li><Icon Name="pin" Size="18" /><span>@Profile.Person.Location</span></li>
+                    }
+                    @if (ProfileFormat.Current(Profile) is { } current)
+                    {
+                        <li><Icon Name="briefcase" Size="18" /><span>@current.Company</span></li>
+                    }
+                </ul>
+            }
+        </div>
+        <div class="hero__code no-print">
+            <CodeDebugger />
+        </div>
+    </div>
+</section>
+
+@code {
+    [Parameter] public Profile? Profile { get; set; }
+
+    // Only absolute https links are rendered, so a bad config value can't inject a javascript: URL.
+    private string? CvUrl =>
+        Uri.TryCreate(Options.Value.CvUrl, UriKind.Absolute, out var uri) && uri.Scheme == Uri.UriSchemeHttps
+            ? uri.AbsoluteUri
+            : null;
+
+    private async Task PrintAsync() => await JS.InvokeVoidAsync("site.printPage");
+}

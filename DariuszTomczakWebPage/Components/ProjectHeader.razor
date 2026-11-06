@@ -1,0 +1,19 @@
+<div class="ph">
+    <span class="icon-circle ph__icon"><Icon Name="@(Project.Icon ?? "code")" Size="24" /></span>
+    <div class="ph__text">
+        <h3 class="@(Large ? "ph__title--lg" : null)">@Project.Name</h3>
+        @if (!string.IsNullOrWhiteSpace(Project.Subtitle))
+        {
+            <p class="ph__subtitle">@Project.Subtitle</p>
+        }
+    </div>
+    @if (!string.IsNullOrWhiteSpace(Project.Status))
+    {
+        <span class="ph__status">@Project.Status</span>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public Project Project { get; set; } = null!;
+    [Parameter] public bool Large { get; set; }
+}

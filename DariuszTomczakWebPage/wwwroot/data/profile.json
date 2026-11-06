@@ -4,7 +4,19 @@
     "title": "Senior Full Stack Developer",
     "summary": "Senior Full Stack Developer with expertise in C#, Java, and cloud technologies, specializing in application modernization and DevOps practices. Experienced in containerizing applications with Docker, migrating to cloud platforms (Nomad, AWS), and building robust CI/CD pipelines. Strong background in financial services with a passion for leveraging AI to streamline development workflows.",
     "location": "Kraków, Poland",
-    "photoUrl": null
+    "photoUrl": null,
+    "tagline": "Full stack developer with a background in financial services. I modernise applications, build CI/CD pipelines and use AI to take the busywork out of development, mostly in C# and .NET.",
+    "about": [
+      "I'm a senior full stack developer working mostly in C# and .NET, with Java and Python when the job calls for it. What I enjoy most is application modernisation: containerising apps with Docker, moving them to the cloud and building the CI/CD pipelines that ship them reliably.",
+      "I started in fund accounting at State Street, where automating my own work with Excel VBA turned into a career in software. These days I'm most interested in using AI and MCP servers to streamline development. Outside work I tinker with PC hardware and local LLMs, and build things in .NET, like ReceptyOks and this site."
+    ],
+    "stack": [
+      "C#",
+      ".NET",
+      "Blazor",
+      "Java",
+      "Python"
+    ]
   },
   "experience": [
     {
@@ -123,7 +135,7 @@
   ],
   "skills": [
     {
-      "category": "Skills",
+      "category": "Languages",
       "primary": true,
       "items": [
         "C#",
@@ -132,26 +144,49 @@
         "SQL",
         "VBA",
         "VB.NET",
+        "HTML/CSS"
+      ]
+    },
+    {
+      "category": ".NET & UI",
+      "primary": true,
+      "items": [
         ".NET",
         "Blazor",
         "MAUI",
         "WPF",
         "WinForms",
+        "MudBlazor",
         "XAML",
         "Xamarin.Forms",
-        "WCF",
         "Entity Framework",
-        "REST API",
-        "gRPC",
-        "HTML/CSS",
+        "WCF"
+      ]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "primary": true,
+      "items": [
         "Docker",
         "AWS",
         "Azure",
         "Terraform",
         "Nomad",
         "CI/CD",
+        "GitLab CI/CD",
+        "GitHub Actions"
+      ]
+    },
+    {
+      "category": "APIs, testing & AI",
+      "primary": true,
+      "items": [
+        "REST API",
+        "gRPC",
         "Gherkin",
-        "MCP (Model Context Protocol)"
+        "NUnit",
+        "MCP (Model Context Protocol)",
+        "Claude API"
       ]
     },
     {
@@ -342,6 +377,33 @@
   ],
   "projects": [
     {
+      "name": "ReceptyOks",
+      "description": "A cross-platform recipe manager built on .NET 10, .NET MAUI and .NET Aspire. The app works offline and syncs with an ASP.NET Core API that runs in Azure Container Apps, and its Blazor Hybrid screens use MudBlazor.",
+      "technologies": [
+        ".NET 10",
+        ".NET MAUI",
+        ".NET Aspire",
+        "ASP.NET Core",
+        "MudBlazor",
+        "Azure Container Apps",
+        "Claude API"
+      ],
+      "repoUrl": "https://github.com/DariuszTom/ReceptyOksSolution",
+      "liveUrl": null,
+      "subtitle": "Personal ? .NET MAUI ? Android and Windows",
+      "status": "Next release in progress",
+      "features": [
+        "Offline-first, with SQLite sync to the cloud",
+        "OCR that reads recipes from photos",
+        "Weekly meal planner with drag and drop",
+        "Shopping lists generated with AI",
+        "Cooking assistant chat powered by Claude",
+        "Biometric sign-in and speech-to-text"
+      ],
+      "featured": true,
+      "icon": "book"
+    },
+    {
       "name": "DariuszTomczakWebPage",
       "description": "This site: Blazor WebAssembly on .NET 10 with MudBlazor, hosted on Azure Static Web Apps and deployed from GitHub Actions with OIDC (no stored secrets).",
       "technologies": [
@@ -352,19 +414,9 @@
         "GitHub Actions"
       ],
       "repoUrl": null,
-      "liveUrl": null
-    },
-    {
-      "name": "ReceptyOks",
-      "description": "Recipe application with a containerized .NET API on Azure Container Apps and Azure SQL.",
-      "technologies": [
-        "C#",
-        ".NET",
-        "Azure Container Apps",
-        "Azure SQL"
-      ],
-      "repoUrl": "https://github.com/DariuszTom/ReceptyOksSolution",
-      "liveUrl": null
+      "liveUrl": null,
+      "subtitle": "Personal ? Blazor WebAssembly",
+      "icon": "globe"
     },
     {
       "name": "Microsoft Agent Framework Showcase",
@@ -375,7 +427,9 @@
         "AI agents"
       ],
       "repoUrl": "https://github.com/DariuszTom/MicrosoftAgentFrameworkShowCase",
-      "liveUrl": null
+      "liveUrl": null,
+      "subtitle": "Personal ? AI agents",
+      "icon": "bot"
     },
     {
       "name": "WinForms with Blazor",
@@ -386,7 +440,9 @@
         ".NET"
       ],
       "repoUrl": "https://github.com/DariuszTom/ShowCaseWinFormsWithBlazor",
-      "liveUrl": null
+      "liveUrl": null,
+      "subtitle": "Personal ? Showcase",
+      "icon": "code"
     },
     {
       "name": "Docker ASP.NET Backend Service",
@@ -396,7 +452,9 @@
         "Docker"
       ],
       "repoUrl": "https://github.com/DariuszTom/DockerAsp.net.BackendService",
-      "liveUrl": null
+      "liveUrl": null,
+      "subtitle": "Personal ? Showcase",
+      "icon": "code"
     },
     {
       "name": "gRPC Demo",
@@ -406,7 +464,9 @@
         "gRPC"
       ],
       "repoUrl": "https://github.com/DariuszTom/GrprcDemo",
-      "liveUrl": null
+      "liveUrl": null,
+      "subtitle": "Personal ? Showcase",
+      "icon": "code"
     },
     {
       "name": "AsyncCommand for XAML",
@@ -417,7 +477,9 @@
         "MVVM"
       ],
       "repoUrl": "https://github.com/DariuszTom/AsyncCommandForXAML",
-      "liveUrl": null
+      "liveUrl": null,
+      "subtitle": "Personal ? Showcase",
+      "icon": "code"
     },
     {
       "name": "The Chronicles Of Myrtana: Archolos",
@@ -427,7 +489,9 @@
         "Testing"
       ],
       "repoUrl": null,
-      "liveUrl": "https://kronikimyrtany.pl/"
+      "liveUrl": "https://kronikimyrtany.pl/",
+      "subtitle": "Community ? Game testing",
+      "icon": "game"
     },
     {
       "name": "OneTrackerApp",
@@ -440,12 +504,37 @@
         "EF Core"
       ],
       "repoUrl": null,
-      "liveUrl": null
+      "liveUrl": null,
+      "subtitle": "Studies ? Mobile and web",
+      "icon": "phone"
     }
   ],
   "photos": [],
   "links": {
     "linkedIn": "https://www.linkedin.com/in/dariusz-tomczak-137890166/",
     "gitHub": "https://github.com/DariuszTom"
-  }
+  },
+  "focus": [
+    {
+      "title": "Modernisation",
+      "description": "Moving .NET and Java apps to containers, the cloud and current frameworks.",
+      "icon": "layers"
+    },
+    {
+      "title": "Delivery",
+      "description": "CI/CD pipelines, Docker, infrastructure as code and BDD tests in Gherkin.",
+      "icon": "upload"
+    },
+    {
+      "title": "AI tooling",
+      "description": "MCP servers and agent workflows that take the busywork out of reviews and testing.",
+      "icon": "bot"
+    }
+  ],
+  "companies": [
+    {
+      "name": "State Street",
+      "summary": "From fund accounting to development: business applications for fund accounting teams in .NET (WinForms and WPF), VSTO add-ins for Microsoft Office, SQL database applications, and Access and Excel VBA automation."
+    }
+  ]
 }

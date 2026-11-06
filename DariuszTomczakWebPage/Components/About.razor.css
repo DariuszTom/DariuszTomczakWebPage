@@ -1,0 +1,142 @@
+.about {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 48px;
+}
+
+.about__card {
+    display: flex;
+    flex: 1 1 300px;
+    flex-direction: column;
+    gap: 20px;
+    padding: 28px 24px;
+}
+
+.about__who {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.about__avatar {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--c-primary);
+    color: var(--c-on-primary);
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.about__name {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.about__title {
+    color: var(--c-text2);
+    font-size: 14px;
+}
+
+.about__divider {
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    border: 0;
+    background: var(--c-divider);
+}
+
+.about__facts {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    font-size: 15px;
+}
+
+.about__facts li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.about__facts li ::deep svg {
+    flex: none;
+    color: var(--c-text2);
+}
+
+.about__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.about__link {
+    display: inline-flex;
+    flex: 1 1 120px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    border: 1px solid var(--c-outline);
+    border-radius: 8px;
+    color: var(--c-primary) !important;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.about__link:hover {
+    background: var(--c-chip-bg);
+}
+
+.about__main {
+    display: flex;
+    flex: 999 1 560px;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 0;
+}
+
+.about__text {
+    color: var(--c-text2);
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.about__focus {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.focus {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+    border: 1px solid var(--c-divider);
+    border-radius: 12px;
+    background: var(--c-surface);
+}
+
+.focus__icon {
+    display: inline-flex;
+    color: var(--c-accent-text);
+}
+
+.focus h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.focus p {
+    color: var(--c-text2);
+    font-size: 14.5px;
+    line-height: 1.55;
+}

@@ -1,0 +1,125 @@
+.skip-link {
+    position: absolute;
+    left: 8px;
+    top: -48px;
+    z-index: 20;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: var(--c-accent);
+    color: var(--c-on-accent) !important;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    top: 8px;
+}
+
+.appbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--c-appbar);
+    color: #ffffff;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+}
+
+.appbar__row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    height: 64px;
+    padding: 0 20px;
+}
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-right: auto;
+    color: #ffffff !important;
+    text-decoration: none;
+}
+
+.logo svg {
+    flex: none;
+}
+
+.logo__name {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: .01em;
+}
+
+.icon-btn {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: #ffffff !important;
+    cursor: pointer;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, .1);
+}
+
+.tabs {
+    background: var(--c-tabs);
+}
+
+.tabs__row {
+    display: flex;
+    padding: 0 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+
+.tab {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    height: 48px;
+    padding: 0 16px;
+    border-bottom: 2px solid transparent;
+    color: #c3cedd !important;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    text-decoration: none;
+}
+
+.tab:hover {
+    color: #ffffff !important;
+}
+
+.tab--active {
+    border-bottom-color: var(--c-accent);
+    color: #ffffff !important;
+}
+
+.footer {
+    padding: 28px 20px;
+    background: var(--c-footer);
+    color: #b8c5d6;
+    font-size: 14px;
+}
+
+.footer__row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+}
+
+@media (max-width: 420px) {
+    .logo__name {
+        display: none;
+    }
+}

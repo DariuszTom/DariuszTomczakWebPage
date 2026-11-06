@@ -11,6 +11,9 @@ public sealed class ProfileOptions
 
     /// <summary>Relative (to the app base) or absolute URL of profile.json.</summary>
     public string Url { get; set; } = "data/profile.json";
+
+    /// <summary>Absolute URL of the downloadable CV. When empty, "Download CV" prints the page instead.</summary>
+    public string? CvUrl { get; set; }
 }
 
 public interface IProfileService

@@ -1,0 +1,44 @@
+<section id="skills" class="section section--alt" aria-labelledby="skills-title">
+    <div class="container section__inner">
+        <SectionHeading Id="skills-title" Title="Skills" Subtitle="The tools I reach for most." />
+        <div class="skills">
+            @foreach (var group in Primary)
+            {
+                <article class="card skill">
+                    <h3>@group.Category</h3>
+                    <ul class="chips">
+                        @foreach (var item in group.Items)
+                        {
+                            <li class="chip chip--filled">@item</li>
+                        }
+                    </ul>
+                </article>
+            }
+        </div>
+        @if (Secondary.Count > 0)
+        {
+            <div class="skills skills--more">
+                @foreach (var group in Secondary)
+                {
+                    <div class="more">
+                        <h3>@group.Category</h3>
+                        <ul class="chips">
+                            @foreach (var item in group.Items)
+                            {
+                                <li class="chip chip--outlined chip--sm">@item</li>
+                            }
+                        </ul>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    [Parameter, EditorRequired] public Profile Profile { get; set; } = null!;
+
+    private List<SkillGroup> Primary => Profile.Skills.Where(s => s.Primary).ToList() is { Count: > 0 } p ? p : Profile.Skills.ToList();
+
+    private List<SkillGroup> Secondary => Profile.Skills.Any(s => s.Primary) ? Profile.Skills.Where(s => !s.Primary).ToList() : [];
+}

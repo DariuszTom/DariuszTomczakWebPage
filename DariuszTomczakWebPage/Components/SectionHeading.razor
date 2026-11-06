@@ -1,0 +1,16 @@
+<div class="heading">
+    <div class="heading__title">
+        <span class="heading__bar" aria-hidden="true"></span>
+        <h2 id="@Id">@Title</h2>
+    </div>
+    @if (!string.IsNullOrWhiteSpace(Subtitle))
+    {
+        <p class="heading__subtitle">@Subtitle</p>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Title { get; set; } = "";
+    [Parameter] public string? Subtitle { get; set; }
+    [Parameter] public string? Id { get; set; }
+}

@@ -1,0 +1,97 @@
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 48px;
+}
+
+.contact__main {
+    display: flex;
+    flex: 1 1 360px;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+.contact__text {
+    max-width: 460px;
+    color: var(--c-text2);
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.contact__links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    min-height: 64px;
+    padding: 8px 12px 8px 0;
+    border-radius: 8px;
+    color: inherit !important;
+    text-decoration: none;
+}
+
+.row:hover .row__value {
+    color: var(--c-primary);
+    text-decoration: underline;
+}
+
+.row__icon {
+    flex: none;
+    width: 44px;
+    height: 44px;
+}
+
+.row__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.row__label {
+    color: var(--c-text2);
+    font-size: 13px;
+}
+
+.row__value {
+    font-size: 16px;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+.contact__card {
+    display: flex;
+    flex: 1 1 420px;
+    flex-direction: column;
+    gap: 20px;
+    padding: 28px 24px;
+}
+
+.fact {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.langs {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.langs .text2 {
+    font-size: 14px;
+}
+
+.contact__note {
+    padding-top: 16px;
+    border-top: 1px solid var(--c-divider);
+    font-size: 15px;
+    line-height: 1.6;
+}

@@ -1,0 +1,266 @@
+@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<figure class="dbg">
+    <figcaption class="dbg__bar">
+        <span>@_sample.File</span>
+        <div class="dbg__controls">
+            <div class="dbg__group" role="group" aria-label="Debugger">
+                <button type="button" class="dbg__btn" @onclick="TogglePlaying"
+                        aria-label="@(_playing ? "Pause stepping" : "Resume stepping")"
+                        title="@(_playing ? "Pause stepping" : "Resume stepping")">
+                    @if (_playing)
+                    {
+                        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="#C9D5E4">
+                            <rect x="6" y="5" width="4" height="14" rx="1" />
+                            <rect x="14" y="5" width="4" height="14" rx="1" />
+                        </svg>
+                    }
+                    else
+                    {
+                        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="#4ADE80">
+                            <path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z" />
+                        </svg>
+                    }
+                </button>
+                <button type="button" class="dbg__btn" @onclick="StepOver" aria-label="Step over (F10)" title="Step over (F10)">
+                    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none"
+                         stroke="#7DD3FC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 13a8 8 0 0 1 15.5-2.8" />
+                        <path d="M20.5 5.5v5h-5" />
+                        <circle cx="12" cy="19" r="2" fill="#7DD3FC" stroke="none" />
+                    </svg>
+                </button>
+            </div>
+            <span class="dbg__divider" aria-hidden="true"></span>
+            <div class="dbg__group dbg__group--lang" role="group" aria-label="Code language">
+                @foreach (var sample in Samples)
+                {
+                    var active = sample == _sample;
+                    <button type="button" class="dbg__lang @(active ? "dbg__lang--active" : null)"
+                            aria-pressed="@(active ? "true" : "false")" @onclick="() => Pick(sample)">@sample.Label</button>
+                }
+            </div>
+        </div>
+    </figcaption>
+    <div class="dbg__scroll">
+        <div class="dbg__code">
+            @for (var i = 0; i < _sample.Lines.Length; i++)
+            {
+                var line = _sample.Lines[i];
+                var on = Active.Contains(i);
+                var bp = i == _sample.Breakpoint;
+                <div class="dbg__row @RowClass(on, bp)">
+                    <span class="dbg__gutter" aria-hidden="true">
+                        @if (bp)
+                        {
+                            <span class="dbg__bp"></span>
+                        }
+                        @if (Active.Length > 0 && Active[0] == i)
+                        {
+                            <svg class="dbg__arrow" width="15" height="12" viewBox="0 0 15 12" focusable="false">
+                                <path d="M1 3.5h7V1l6 5-6 5V8.5H1z" fill="#FACC15" stroke="#0A1628" stroke-width="1" />
+                            </svg>
+                        }
+                    </span>
+                    <span class="dbg__num @(on ? "dbg__num--on" : null)" aria-hidden="true">@(i + 1)</span>
+                    <span class="dbg__text" style="padding-left: @(line.Indent)ch">
+                        @foreach (var token in line.Tokens)
+                        {
+                            switch (token.Kind)
+                            {
+                                case 'k':
+                                    <span class="tk-kw">@token.Text</span>
+                                    break;
+                                case 't':
+                                    <span class="tk-type">@token.Text</span>
+                                    break;
+                                case 's':
+                                    <span class="tk-str">@token.Text</span>
+                                    break;
+                                case 'l':
+                                    <a class="tk-link" href="https://github.com/DariuszTom/ReceptyOksSolution" target="_blank" rel="noopener noreferrer">@token.Text</a>
+                                    break;
+                                default:
+                                    @token.Text
+                                    break;
+                            }
+                        }
+                    </span>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="dbg__status" aria-hidden="true">
+        <span class="dbg__status-left">
+            @if (_step == -1)
+            {
+                <text>Running…</text>
+            }
+            else if (AtBreakpoint)
+            {
+                <span class="dbg__status-dot"></span>
+                <text>Breakpoint hit · @_sample.File, line @(_sample.Breakpoint + 1)</text>
+            }
+            else
+            {
+                @(_playing ? "Step Over (F10)" : "Paused · Step Over (F10)")
+            }
+        </span>
+        <span>@(_step == -1 ? "" : $"Ln {Active[0] + 1}")</span>
+    </div>
+</figure>
+
+@code {
+    private const int TickMs = 950;
+    private const int HoldTicks = 3;
+
+    private sealed record Token(char Kind, string Text);
+    private sealed record Line(int Indent, Token[] Tokens);
+    private sealed record Sample(string Label, string File, Line[] Lines, int[][] Steps, int Breakpoint);
+
+    private static Line L(int indent, params Token[] tokens) => new(indent, tokens);
+    private static Token K(string t) => new('k', t);
+    private static Token T(string t) => new('t', t);
+    private static Token S(string t) => new('s', t);
+    private static Token P(string t) => new('p', t);
+    private static Token A(string t) => new('l', t);
+
+    private static readonly Sample CSharp = new("C#", "Me.cs",
+    [
+        L(0, K("var"), P(" me = "), K("new"), P(" "), T("Developer")),
+        L(0, P("{")),
+        L(4, P("Name  = "), S("\"Dariusz Tomczak\""), P(",")),
+        L(4, P("Role  = "), S("\"Senior Full Stack Developer\""), P(",")),
+        L(4, P("Base  = "), S("\"Kraków, Poland\""), P(",")),
+        L(4, P("Stack = ["), S("\"C#\""), P(", "), S("\".NET\""), P(", "), S("\"Blazor\""), P(", "), S("\"Java\""), P(",")),
+        L(13, S("\"Python\""), P(", "), S("\"Docker\""), P(", "), S("\"AWS\""), P("],")),
+        L(0, P("};")),
+        L(0),
+        L(0, A("// next release: ReceptyOksSolution")),
+        L(0, K("await"), P(" me.ShipAsync("), T("ReceptyOks"), P(".NextRelease);")),
+    ],
+    [[0], [2], [3], [4], [5, 6], [10]], 10);
+
+    private static readonly Sample Python = new("Python", "me.py",
+    [
+        L(0, K("import"), P(" asyncio")),
+        L(0),
+        L(0, P("me = "), T("Developer"), P("(")),
+        L(4, P("name="), S("\"Dariusz Tomczak\""), P(",")),
+        L(4, P("role="), S("\"Senior Full Stack Developer\""), P(",")),
+        L(4, P("base="), S("\"Kraków, Poland\""), P(",")),
+        L(4, P("stack=["), S("\"C#\""), P(", "), S("\".NET\""), P(", "), S("\"Blazor\""), P(", "), S("\"Java\""), P(",")),
+        L(11, S("\"Python\""), P(", "), S("\"Docker\""), P(", "), S("\"AWS\""), P("],")),
+        L(0, P(")")),
+        L(0),
+        L(0, A("# next release: ReceptyOksSolution")),
+        L(0, P("asyncio.run(me.ship(recepty_oks.next_release))")),
+    ],
+    [[0], [2], [3], [4], [5], [6, 7], [11]], 11);
+
+    private static readonly Sample[] Samples = [CSharp, Python];
+
+    private Sample _sample = CSharp;
+    private int _step = -1;
+    private int _hold;
+    private bool _playing = true;
+    private PeriodicTimer? _timer;
+    private CancellationTokenSource? _cts;
+
+    private int Last => _sample.Steps.Length - 1;
+    private int[] Active => _step >= 0 ? _sample.Steps[Math.Min(_step, Last)] : [];
+    private bool AtBreakpoint => Active.Contains(_sample.Breakpoint);
+
+    private static string? RowClass(bool on, bool bp) => (on, bp) switch
+    {
+        (true, true) => "dbg__row--hit",
+        (true, false) => "dbg__row--on",
+        (false, true) => "dbg__row--bp",
+        _ => null,
+    };
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender)
+        {
+            return;
+        }
+
+        try
+        {
+            if (await JS.InvokeAsync<bool>("site.prefersReducedMotion"))
+            {
+                _playing = false;
+                _step = Last;
+                StateHasChanged();
+                return;
+            }
+        }
+        catch (JSException)
+        {
+        }
+
+        _cts = new CancellationTokenSource();
+        _timer = new PeriodicTimer(TimeSpan.FromMilliseconds(TickMs));
+        _ = RunAsync(_timer, _cts.Token);
+    }
+
+    private async Task RunAsync(PeriodicTimer timer, CancellationToken token)
+    {
+        try
+        {
+            while (await timer.WaitForNextTickAsync(token))
+            {
+                if (_playing && Tick())
+                {
+                    await InvokeAsync(StateHasChanged);
+                }
+            }
+        }
+        catch (OperationCanceledException)
+        {
+        }
+    }
+
+    /// <returns><c>true</c> when the visible state changed.</returns>
+    private bool Tick()
+    {
+        if (_step == Last)
+        {
+            if (++_hold < HoldTicks)
+            {
+                return false;
+            }
+            _hold = 0;
+            _step = -1;
+            return true;
+        }
+        _step = _step == -1 ? 0 : _step + 1;
+        return true;
+    }
+
+    private void TogglePlaying() => _playing = !_playing;
+
+    private void StepOver()
+    {
+        _hold = 0;
+        _playing = false;
+        _step = _step == -1 || _step >= Last ? 0 : _step + 1;
+    }
+
+    private void Pick(Sample sample)
+    {
+        _sample = sample;
+        _hold = 0;
+        _step = 0;
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        _cts?.Cancel();
+        _cts?.Dispose();
+        _timer?.Dispose();
+        return ValueTask.CompletedTask;
+    }
+}

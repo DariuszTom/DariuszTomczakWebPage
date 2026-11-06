@@ -1,12 +1,149 @@
 ﻿@inherits LayoutComponentBase
+@implements IAsyncDisposable
+@inject IJSRuntime JS
 
-<MudThemeProvider />
+<MudThemeProvider @ref="_themeProvider" Theme="_theme" @bind-IsDarkMode="_isDark" />
 <MudPopoverProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<MudLayout>
-    <MudMainContent>
-        @Body
-    </MudMainContent>
-</MudLayout>
+<div class="site @(_isDark ? "theme-dark" : null)">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="appbar no-print">
+        <div class="container appbar__row">
+            <a class="logo" href="#top">
+                <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+                    <defs>
+                        <mask id="dt-flap-bar">
+                            <rect width="40" height="40" fill="#fff" />
+                            <rect y="19.3" width="40" height="1.4" fill="#000" />
+                            <circle cx="0" cy="20" r="2.2" fill="#000" />
+                            <circle cx="40" cy="20" r="2.2" fill="#000" />
+                        </mask>
+                    </defs>
+                    <g mask="url(#dt-flap-bar)">
+                        <rect width="40" height="40" rx="9" fill="#F59E0B" />
+                        <path d="M0 20H40V31A9 9 0 0 1 31 40H9A9 9 0 0 1 0 31Z" fill="#000" opacity=".1" />
+                        <path d="M7.5 29V11H32.5M28 11V29M12.5 11A9 9 0 0 1 12.5 29H7.5" fill="none" stroke="#0F2744"
+                              stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
+                    </g>
+                </svg>
+                <span class="logo__name">Dariusz Tomczak</span>
+            </a>
+            <a class="icon-btn" href="https://github.com/DariuszTom" target="_blank" rel="noopener noreferrer"
+               aria-label="GitHub profile, opens in a new tab" title="GitHub">
+                <Icon Name="github" Size="22" />
+            </a>
+            <a class="icon-btn" href="https://www.linkedin.com/in/dariusz-tomczak-137890166/" target="_blank" rel="noopener noreferrer"
+               aria-label="LinkedIn profile, opens in a new tab" title="LinkedIn">
+                <Icon Name="linkedin" Size="22" />
+            </a>
+            <button type="button" class="icon-btn" @onclick="ToggleTheme"
+                    aria-label="@(_isDark ? "Switch to light theme" : "Switch to dark theme")"
+                    title="@(_isDark ? "Light theme" : "Dark theme")">
+                <Icon Name="@(_isDark ? "sun" : "moon")" Size="22" />
+            </button>
+        </div>
+        <nav class="tabs" aria-label="Sections">
+            <div class="container tabs__row">
+                @foreach (var (id, label) in Sections)
+                {
+                    var active = id == _activeSection;
+                    <a href="@($"#{id}")" class="tab @(active ? "tab--active" : null)"
+                       aria-current="@(active ? "true" : null)" @onclick="() => _activeSection = id">@label</a>
+                }
+            </div>
+        </nav>
+    </header>
+
+    <div id="main">
+        <CascadingValue Value="this" IsFixed="true">
+            @Body
+        </CascadingValue>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer__row">
+            <span>© @DateTime.Now.Year Dariusz Tomczak</span>
+            <span>Built with Blazor WebAssembly and MudBlazor · Hosted on Azure Static Web Apps</span>
+        </div>
+    </footer>
+</div>
+
+@code {
+    private static readonly (string Id, string Label)[] Sections =
+    [
+        ("about", "About"),
+        ("experience", "Experience"),
+        ("projects", "Projects"),
+        ("skills", "Skills"),
+        ("contact", "Contact"),
+    ];
+
+    private readonly MudTheme _theme = SiteTheme.Create();
+    private MudThemeProvider? _themeProvider;
+    private DotNetObjectReference<MainLayout>? _selfRef;
+    private bool _isDark;
+    private bool _userChoice;
+    private string? _activeSection;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender || _themeProvider is null)
+        {
+            return;
+        }
+
+        _isDark = await _themeProvider.GetSystemDarkModeAsync();
+        await _themeProvider.WatchSystemDarkModeAsync(OnSystemDarkModeChanged);
+        StateHasChanged();
+    }
+
+    /// <summary>Called by pages once their sections are in the DOM.</summary>
+    public async Task ObserveSectionsAsync()
+    {
+        _selfRef ??= DotNetObjectReference.Create(this);
+        await JS.InvokeVoidAsync("site.observeSections", _selfRef, Sections.Select(s => s.Id).ToArray());
+    }
+
+    [JSInvokable]
+    public void SetActiveSection(string? id)
+    {
+        if (_activeSection != id)
+        {
+            _activeSection = id;
+            StateHasChanged();
+        }
+    }
+
+    private Task OnSystemDarkModeChanged(bool isDark)
+    {
+        if (!_userChoice)
+        {
+            _isDark = isDark;
+            StateHasChanged();
+        }
+        return Task.CompletedTask;
+    }
+
+    private void ToggleTheme()
+    {
+        _userChoice = true;
+        _isDark = !_isDark;
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_selfRef is not null)
+        {
+            try
+            {
+                await JS.InvokeVoidAsync("site.disconnectSections");
+            }
+            catch (JSDisconnectedException)
+            {
+            }
+            _selfRef.Dispose();
+        }
+    }
+}

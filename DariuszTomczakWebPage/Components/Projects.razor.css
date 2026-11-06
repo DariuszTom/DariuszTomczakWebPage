@@ -1,0 +1,86 @@
+.projects {
+    gap: 24px;
+}
+
+.project {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.featured__top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px 40px;
+    padding: 28px 24px 8px;
+}
+
+.featured__main {
+    display: flex;
+    flex: 1 1 400px;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
+
+.features {
+    display: grid;
+    flex: 1 1 380px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    align-content: start;
+    gap: 14px 24px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.features li ::deep svg {
+    flex: none;
+    color: var(--c-accent-text);
+}
+
+.project__desc {
+    color: var(--c-text2);
+}
+
+.project__desc--lg {
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+.project__desc--sm {
+    flex: 1 1 auto;
+    padding: 8px 24px 16px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.project__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 32px;
+    padding: 24px 24px 8px;
+}
+
+.project__head {
+    flex: 1 1 400px;
+    min-width: 0;
+}
+
+.project__chips {
+    flex: 1 1 380px;
+}
+
+.project ::deep .pl {
+    margin-top: 0;
+}
+
+.project--featured ::deep .pl {
+    margin-top: 16px;
+}

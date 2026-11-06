@@ -1,5 +1,66 @@
 ﻿@page "/"
+@using DariuszTomczakWebPage.Layout
+@inject IProfileService ProfileService
 
-<PageTitle>Dariusz Tomczak</PageTitle>
+<PageTitle>Dariusz Tomczak – Senior Full Stack Developer</PageTitle>
 
-<h1>Dariusz Tomczak</h1>
+<Hero Profile="_profile" />
+
+@if (_profile is not null)
+{
+    <About Profile="_profile" />
+    <ExperienceTimeline Profile="_profile" />
+    <Projects Profile="_profile" />
+    <Skills Profile="_profile" />
+    <Contact Profile="_profile" />
+}
+else if (_failed)
+{
+    <section class="section" role="alert">
+        <div class="container status">
+            <p>Sorry, the profile could not be loaded.</p>
+            <button type="button" class="status__retry" @onclick="LoadAsync">Try again</button>
+        </div>
+    </section>
+}
+else
+{
+    <section class="section" aria-busy="true">
+        <div class="container status">
+            <MudProgressCircular Color="Color.Secondary" Indeterminate="true" Size="Size.Medium" />
+            <p class="visually-hidden">Loading profile…</p>
+        </div>
+    </section>
+}
+
+@code {
+    [CascadingParameter] public MainLayout? Layout { get; set; }
+
+    private Profile? _profile;
+    private bool _failed;
+    private bool _observing;
+
+    protected override Task OnInitializedAsync() => LoadAsync();
+
+    private async Task LoadAsync()
+    {
+        _failed = false;
+        try
+        {
+            _profile = await ProfileService.GetAsync();
+        }
+        catch (Exception ex) when (ex is HttpRequestException or System.Text.Json.JsonException or InvalidOperationException)
+        {
+            _failed = true;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (_profile is not null && !_observing && Layout is not null)
+        {
+            _observing = true;
+            await Layout.ObserveSectionsAsync();
+        }
+    }
+}

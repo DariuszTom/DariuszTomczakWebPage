@@ -1,0 +1,109 @@
+<section id="experience" class="section section--alt" aria-labelledby="experience-title">
+    <div class="container section__inner">
+        <SectionHeading Id="experience-title" Title="Experience"
+                        Subtitle="Ten years in financial services, from fund accounting to full stack development." />
+        <ol class="timeline">
+            <li class="timeline__line" aria-hidden="true"></li>
+            @foreach (var group in Groups)
+            {
+                var current = group.Roles.Any(r => string.IsNullOrWhiteSpace(r.End));
+                var summary = Profile.Companies?.FirstOrDefault(c => string.Equals(c.Name, group.Company, StringComparison.OrdinalIgnoreCase))?.Summary;
+                var tech = group.Roles.SelectMany(r => r.Technologies).Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+                <li class="timeline__item">
+                    <span class="dot @(current ? "dot--current" : null)" aria-hidden="true"></span>
+                    <article class="card entry">
+                        <header class="entry__head">
+                            <h3>@group.Company</h3>
+                            <span class="entry__range">@ProfileFormat.MonthRange(group.Roles[^1].Start, group.Roles[0].End)</span>
+                        </header>
+                        @if (!string.IsNullOrWhiteSpace(summary))
+                        {
+                            <p class="entry__summary">@summary</p>
+                        }
+                        <ul class="roles">
+                            @foreach (var role in group.Roles)
+                            {
+                                <li class="role">
+                                    <div class="role__head">
+                                        <span class="role__name">@ProfileFormat.Dashes(role.Role)</span>
+                                        @if (string.IsNullOrWhiteSpace(role.End))
+                                        {
+                                            <span class="pill">Current</span>
+                                        }
+                                    </div>
+                                    <span class="role__dates">@ProfileFormat.MonthRange(role.Start, role.End)</span>
+                                    @if (role.Highlights.Count > 0)
+                                    {
+                                        <ul class="role__highlights">
+                                            @foreach (var highlight in role.Highlights)
+                                            {
+                                                <li>@highlight</li>
+                                            }
+                                        </ul>
+                                    }
+                                </li>
+                            }
+                        </ul>
+                        @if (tech.Count > 0)
+                        {
+                            <ul class="chips" aria-label="Technologies">
+                                @foreach (var item in tech)
+                                {
+                                    <li class="chip chip--outlined">@item</li>
+                                }
+                            </ul>
+                        }
+                    </article>
+                </li>
+            }
+            @if (Profile.Education.Count > 0)
+            {
+                <li class="timeline__item">
+                    <span class="dot" aria-hidden="true"></span>
+                    <article class="card entry">
+                        <header class="entry__head">
+                            <h3>Education</h3>
+                        </header>
+                        <ul class="roles">
+                            @foreach (var edu in Profile.Education)
+                            {
+                                <li class="role role--edu">
+                                    <div>
+                                        <span class="role__name">@ProfileFormat.Dashes(edu.Degree)</span>
+                                        <span class="role__dates">@ProfileFormat.Dashes(edu.School)</span>
+                                    </div>
+                                    <span class="role__dates role__years">@ProfileFormat.YearRange(edu.Start, edu.End)</span>
+                                </li>
+                            }
+                        </ul>
+                    </article>
+                </li>
+            }
+        </ol>
+    </div>
+</section>
+
+@code {
+    [Parameter, EditorRequired] public Profile Profile { get; set; } = null!;
+
+    private sealed record CompanyGroup(string Company, List<Experience> Roles);
+
+    private List<CompanyGroup> Groups { get; set; } = [];
+
+    protected override void OnParametersSet()
+    {
+        // Consecutive roles at the same company share one card.
+        Groups = [];
+        foreach (var exp in Profile.Experience)
+        {
+            if (Groups.Count > 0 && string.Equals(Groups[^1].Company, exp.Company, StringComparison.OrdinalIgnoreCase))
+            {
+                Groups[^1].Roles.Add(exp);
+            }
+            else
+            {
+                Groups.Add(new CompanyGroup(exp.Company, [exp]));
+            }
+        }
+    }
+}

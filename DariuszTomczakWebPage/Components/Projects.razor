@@ -1,0 +1,57 @@
+<section id="projects" class="section" aria-labelledby="projects-title">
+    <div class="container section__inner projects">
+        <SectionHeading Id="projects-title" Title="Projects" Subtitle="Things I build in my own time." />
+        @foreach (var project in Profile.Projects)
+        {
+            if (project.Featured)
+            {
+                <article class="card project project--featured">
+                    <div class="featured__top">
+                        <div class="featured__main">
+                            <ProjectHeader Project="project" Large="true" />
+                            <p class="project__desc project__desc--lg">@project.Description</p>
+                            <ul class="chips" aria-label="Technologies">
+                                @foreach (var tech in project.Technologies)
+                                {
+                                    <li class="chip chip--filled chip--sm">@tech</li>
+                                }
+                            </ul>
+                        </div>
+                        @if (project.Features is { Count: > 0 } features)
+                        {
+                            <ul class="features" aria-label="Features">
+                                @foreach (var feature in features)
+                                {
+                                    <li><Icon Name="check" Size="20" StrokeWidth="2.2" /><span>@feature</span></li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                    <ProjectLinks Project="project" />
+                </article>
+            }
+            else
+            {
+                <article class="card project">
+                    <div class="project__top">
+                        <div class="project__head">
+                            <ProjectHeader Project="project" />
+                        </div>
+                        <ul class="chips project__chips" aria-label="Technologies">
+                            @foreach (var tech in project.Technologies)
+                            {
+                                <li class="chip chip--filled chip--sm">@tech</li>
+                            }
+                        </ul>
+                    </div>
+                    <p class="project__desc project__desc--sm">@project.Description</p>
+                    <ProjectLinks Project="project" />
+                </article>
+            }
+        }
+    </div>
+</section>
+
+@code {
+    [Parameter, EditorRequired] public Profile Profile { get; set; } = null!;
+}

@@ -215,17 +215,17 @@ Opcjonalnie: włączyć **Secret Protection / push protection** w ustawieniach r
 |---|---|---|---|
 | 1 | `profile-model` | Rekordy modelu profilu (Person, Experience, SkillGroup, Education, Certification, Project, Links) | – |
 | 2 | `profile-json` | `wwwroot/data/profile.json` wypełniony danymi z CV v3.10 (bez telefonu) | – |
-| 3 | `profile-service` | `IProfileService`: wczytanie JSON przez `HttpClient`, cache w pamięci, URL z `Profile:Url` | 1, 2 |
+| 3 | `profile-service` | ✅ `IProfileService`: wczytanie JSON przez `HttpClient`, cache w pamięci, URL z `Profile:Url` | 1, 2 |
 | 4 | `layout-cleanup` | Usunięcie Counter/Weather/`sample-data`/NavMenu/**Bootstrap**; nowy `MainLayout` z MudBlazor AppBar i nawigacją kotwicami; `MudTheme` z paletą z CV | – |
-| 5 | `section-hero` | Sekcja Hero: imię, tytuł, krótkie bio, przyciski CTA | 3, 4 |
-| 6 | `section-cv` | Sekcja CV: oś czasu doświadczenia, skille jako chipy, edukacja i certyfikaty | 3, 4 |
-| 7 | `section-projects` | Sekcja Projects: karty projektów (opis, technologie, linki) | 3, 4 |
-| 8 | `section-contact` | Sekcja Contact: LinkedIn, GitHub | 3, 4 |
+| 5 | `section-hero` | ✅ Sekcja Hero wg makiety `websiteMockup/Main.dc.html`: imię, tagline, CTA, animowany „debugger” C#/Python | 3, 4 |
+| 6 | `section-cv` | ✅ Sekcje About / Experience (oś czasu, role grupowane po firmie, edukacja) / Skills. Pierwotnie: oś czasu doświadczenia, skille jako chipy, edukacja i certyfikaty | 3, 4 |
+| 7 | `section-projects` | ✅ Sekcja Projects (projekt wyróżniony + karty): karty projektów (opis, technologie, linki) | 3, 4 |
+| 8 | `section-contact` | ✅ Sekcja Contact: LinkedIn, GitHub, lokalizacja i języki (bez e-maila i formularza) | 3, 4 |
 | 9 | `swa-config` | `staticwebapp.config.json`: nagłówki bezpieczeństwa, fallback SPA, cache | – |
 | 10 | `deploy-workflow` | Job `deploy` w `.github/workflows/dotnet-desktop.yml`: OIDC (`azure/login`) → token SWA pobierany w locie → `static-web-apps-deploy` z artefaktu Release; environment `Master_ENV`; akcje przypięte do SHA + Dependabot | 9 |
 | 11 | `linkedin-import` | ✅ `tools/LinkedInImport.cs` (eksport CSV → merge do `profile.json`): `dotnet run tools/LinkedInImport.cs -- <folder-eksportu>`. Idempotentny; nadpisuje daty/role/certyfikaty/języki, dodaje nowe skille (grupa "More" do ręcznego przeniesienia), projekty, edukację. Pomijane skille: `tools/LinkedInImport.ignore`. Eksport jest w `.gitignore` – nigdy go nie commitować | 1 |
 | 12 | `seo-meta` | `index.html`: tytuł, meta description, Open Graph, JSON-LD `Person` | – |
-| 13 | `print-cv` | Styl `@media print` dla sekcji CV + przycisk "Pobierz PDF" | 6 |
+| 13 | `print-cv` | 🟡 Przycisk „Download CV” otwiera PDF z Google Drive (`Profile:CvUrl` w `wwwroot/appsettings.json`, tylko https); gdy pusty – `window.print()`. Podstawowy `@media print` do dopracowania | 6 |
 | 14 | `ui-tests` | *(opcjonalnie)* projekt testowy bUnit dla sekcji | 5–8 |
 | 15 | `photos` | `wwwroot/img/` (WebP, bez EXIF), pole `photos` w `profile.json` (`src`, `alt`, `caption`), zdjęcie w Hero + opcjonalna galeria (`MudCarousel`/siatka) z lazy loading | 3 |
 | 16 | `cost-budget` | Budżet Azure Cost Management (np. 5 USD) z alertem e-mail (część `infra/`) | – |

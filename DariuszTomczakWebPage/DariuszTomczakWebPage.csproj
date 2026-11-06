@@ -14,10 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- Design mockup kept for reference only; not part of the build or publish output. -->
+    <!-- Design mockups kept for reference only; not part of the build or publish output. -->
     <Content Remove="Splash\**" />
     <None Remove="Splash\**" />
-    <None Include="Splash\**" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
+    <None Include="Splash\**;websiteMockup\**" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
   </ItemGroup>
 
   <ItemGroup>

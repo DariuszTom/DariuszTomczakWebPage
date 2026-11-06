@@ -1,0 +1,25 @@
+@if (!string.IsNullOrWhiteSpace(Project.RepoUrl) || !string.IsNullOrWhiteSpace(Project.LiveUrl))
+{
+    <footer class="pl no-print">
+        @if (!string.IsNullOrWhiteSpace(Project.RepoUrl))
+        {
+            <a class="text-link" href="@Project.RepoUrl" target="_blank" rel="noopener noreferrer"
+               aria-label="@($"{(Project.Featured ? "View source" : "View on GitHub")}: {Project.Name}, opens in a new tab")">
+                @(Project.Featured ? "View source" : "View on GitHub")
+                <Icon Name="external" Size="16" />
+            </a>
+        }
+        @if (!string.IsNullOrWhiteSpace(Project.LiveUrl))
+        {
+            <a class="text-link" href="@Project.LiveUrl" target="_blank" rel="noopener noreferrer"
+               aria-label="@($"Visit site: {Project.Name}, opens in a new tab")">
+                Visit site
+                <Icon Name="external" Size="16" />
+            </a>
+        }
+    </footer>
+}
+
+@code {
+    [Parameter, EditorRequired] public Project Project { get; set; } = null!;
+}

@@ -2,8 +2,215 @@ html, body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 h1:focus {
     outline: none;
+}
+
+/* Design tokens (light) */
+.site {
+    --c-bg: #f5f7fa;
+    --c-surface: #ffffff;
+    --c-alt: #ebeff5;
+    --c-text: #1a2433;
+    --c-text2: #4a5567;
+    --c-divider: #e1e6ed;
+    --c-outline: #7a8699;
+    --c-chip-bg: #e6edf6;
+    --c-chip-text: #1e3a5f;
+    --c-chip-border: #c9d2de;
+    --c-primary: #1e3a5f;
+    --c-on-primary: #ffffff;
+    --c-appbar: #0f2744;
+    --c-tabs: #16304f;
+    --c-hero-from: #1e3a5f;
+    --c-hero-to: #0f2744;
+    --c-accent: #f59e0b;
+    --c-on-accent: #0f2744;
+    --c-accent-text: #b45309;
+    --c-timeline: #c9d2de;
+    --c-timeline-dot: #7a8699;
+    --c-footer: #0f2744;
+    --shadow-e1: 0 2px 1px -1px rgba(15, 39, 68, .10), 0 1px 1px 0 rgba(15, 39, 68, .07), 0 1px 3px 0 rgba(15, 39, 68, .10);
+    --shadow-btn: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    --font-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+    min-height: 100vh;
+    background: var(--c-bg);
+    color: var(--c-text);
+    font-size: 16px;
+    line-height: 1.6;
+    color-scheme: light;
+}
+
+.site.theme-dark {
+    --c-bg: #0b1220;
+    --c-surface: #131c2e;
+    --c-alt: #0f1828;
+    --c-text: #e6ecf5;
+    --c-text2: #a9b6c9;
+    --c-divider: #26324a;
+    --c-outline: #5a6a86;
+    --c-chip-bg: #1e2a44;
+    --c-chip-text: #dce6f5;
+    --c-chip-border: #33415c;
+    --c-primary: #8db4e8;
+    --c-on-primary: #0b1220;
+    --c-appbar: #0b1220;
+    --c-tabs: #0f1828;
+    --c-hero-from: #16263f;
+    --c-hero-to: #0b1220;
+    --c-accent-text: #f59e0b;
+    --c-timeline: #26324a;
+    --c-timeline-dot: #5a6a86;
+    --c-footer: #070c16;
+    --shadow-e1: none;
+    color-scheme: dark;
+}
+
+.site a {
+    color: inherit;
+}
+
+.site :focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 2px;
+}
+
+.site h1, .site h2, .site h3, .site p, .site ul, .site ol {
+    margin: 0;
+}
+
+.site ul, .site ol {
+    padding: 0;
+    list-style: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section {
+    padding: clamp(56px, 7vw, 88px) 20px;
+    scroll-margin-top: 112px;
+    background: var(--c-bg);
+}
+
+.section--alt {
+    background: var(--c-alt);
+}
+
+.section__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-divider);
+    border-radius: 12px;
+    box-shadow: var(--shadow-e1);
+}
+
+.text2 {
+    color: var(--c-text2);
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 15px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.chip--filled {
+    background: var(--c-chip-bg);
+    color: var(--c-chip-text);
+}
+
+.chip--outlined {
+    border: 1px solid var(--c-chip-border);
+    color: var(--c-text);
+}
+
+.chip--sm {
+    height: 28px;
+    border-radius: 14px;
+}
+
+.icon-circle {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--c-chip-bg);
+    color: var(--c-primary);
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 0 12px;
+    border-radius: 8px;
+    color: var(--c-primary) !important;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.text-link:hover {
+    background: var(--c-chip-bg);
+}
+
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media print {
+    .site {
+        --shadow-e1: none;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    .section {
+        padding: 16px 0;
+        break-inside: avoid-page;
+    }
 }
 
 #blazor-error-ui {
