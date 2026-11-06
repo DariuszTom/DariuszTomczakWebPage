@@ -1,4 +1,6 @@
-<section id="about" class="section" aria-labelledby="about-title">
+@inject IOptions<LinksOptions> Links
+
+<section id="about" class="section section--alt" aria-labelledby="about-title">
     <div class="container about">
         <aside class="card about__card" aria-label="Profile summary">
             <div class="about__who">
@@ -28,16 +30,16 @@
                 }
             </ul>
             <div class="about__links no-print">
-                @if (!string.IsNullOrWhiteSpace(Profile.Links.LinkedIn))
+                @if (LinkedIn is not null)
                 {
-                    <a class="about__link" href="@Profile.Links.LinkedIn" target="_blank" rel="noopener noreferrer"
+                    <a class="about__link" href="@LinkedIn" target="_blank" rel="noopener noreferrer"
                        aria-label="LinkedIn profile, opens in a new tab">
                         <Icon Name="linkedin" Size="18" />LinkedIn
                     </a>
                 }
-                @if (!string.IsNullOrWhiteSpace(Profile.Links.GitHub))
+                @if (GitHub is not null)
                 {
-                    <a class="about__link" href="@Profile.Links.GitHub" target="_blank" rel="noopener noreferrer"
+                    <a class="about__link" href="@GitHub" target="_blank" rel="noopener noreferrer"
                        aria-label="GitHub profile, opens in a new tab">
                         <Icon Name="github" Size="18" />GitHub
                     </a>
@@ -69,6 +71,10 @@
 
 @code {
     [Parameter, EditorRequired] public Profile Profile { get; set; } = null!;
+
+    private string? LinkedIn => SafeUrl.Https(Links.Value.LinkedIn);
+
+    private string? GitHub => SafeUrl.Https(Links.Value.GitHub);
 
     private IReadOnlyList<string> Paragraphs =>
         Profile.Person.About is { Count: > 0 } about ? about : [Profile.Person.Summary];

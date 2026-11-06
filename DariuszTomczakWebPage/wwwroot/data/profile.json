@@ -390,7 +390,7 @@
       ],
       "repoUrl": "https://github.com/DariuszTom/ReceptyOksSolution",
       "liveUrl": null,
-      "subtitle": "Personal ? .NET MAUI ? Android and Windows",
+      "subtitle": "Personal · .NET MAUI · Android and Windows",
       "status": "Next release in progress",
       "features": [
         "Offline-first, with SQLite sync to the cloud",
@@ -415,7 +415,7 @@
       ],
       "repoUrl": null,
       "liveUrl": null,
-      "subtitle": "Personal ? Blazor WebAssembly",
+      "subtitle": "Personal · Blazor WebAssembly",
       "icon": "globe"
     },
     {
@@ -428,7 +428,7 @@
       ],
       "repoUrl": "https://github.com/DariuszTom/MicrosoftAgentFrameworkShowCase",
       "liveUrl": null,
-      "subtitle": "Personal ? AI agents",
+      "subtitle": "Personal · AI agents",
       "icon": "bot"
     },
     {
@@ -441,7 +441,7 @@
       ],
       "repoUrl": "https://github.com/DariuszTom/ShowCaseWinFormsWithBlazor",
       "liveUrl": null,
-      "subtitle": "Personal ? Showcase",
+      "subtitle": "Personal · Showcase",
       "icon": "code"
     },
     {
@@ -453,7 +453,7 @@
       ],
       "repoUrl": "https://github.com/DariuszTom/DockerAsp.net.BackendService",
       "liveUrl": null,
-      "subtitle": "Personal ? Showcase",
+      "subtitle": "Personal · Showcase",
       "icon": "code"
     },
     {
@@ -465,7 +465,7 @@
       ],
       "repoUrl": "https://github.com/DariuszTom/GrprcDemo",
       "liveUrl": null,
-      "subtitle": "Personal ? Showcase",
+      "subtitle": "Personal · Showcase",
       "icon": "code"
     },
     {
@@ -478,7 +478,7 @@
       ],
       "repoUrl": "https://github.com/DariuszTom/AsyncCommandForXAML",
       "liveUrl": null,
-      "subtitle": "Personal ? Showcase",
+      "subtitle": "Personal · Showcase",
       "icon": "code"
     },
     {
@@ -490,7 +490,7 @@
       ],
       "repoUrl": null,
       "liveUrl": "https://kronikimyrtany.pl/",
-      "subtitle": "Community ? Game testing",
+      "subtitle": "Community · Game testing",
       "icon": "game"
     },
     {
@@ -505,15 +505,11 @@
       ],
       "repoUrl": null,
       "liveUrl": null,
-      "subtitle": "Studies ? Mobile and web",
+      "subtitle": "Studies · Mobile and web",
       "icon": "phone"
     }
   ],
   "photos": [],
-  "links": {
-    "linkedIn": "https://www.linkedin.com/in/dariusz-tomczak-137890166/",
-    "gitHub": "https://github.com/DariuszTom"
-  },
   "focus": [
     {
       "title": "Modernisation",

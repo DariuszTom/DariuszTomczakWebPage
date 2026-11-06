@@ -10,7 +10,6 @@ public sealed record Profile(
     IReadOnlyList<Project> Projects,
     IReadOnlyList<Photo> Photos,
     IReadOnlyList<Language> Languages,
-    Links Links,
     IReadOnlyList<FocusArea>? Focus = null,
     IReadOnlyList<Company>? Companies = null);
 
@@ -67,5 +66,3 @@ public sealed record FocusArea(string Title, string Description, string? Icon = 
 public sealed record Photo(string Src, string Alt, string? Caption, int Width, int Height);
 
 public sealed record Language(string Name, string Level);
-
-public sealed record Links(string? LinkedIn, string? GitHub);

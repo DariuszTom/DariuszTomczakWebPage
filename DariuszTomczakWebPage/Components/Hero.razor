@@ -1,5 +1,5 @@
 @inject IJSRuntime JS
-@inject Microsoft.Extensions.Options.IOptions<ProfileOptions> Options
+@inject IOptions<LinksOptions> Links
 
 <section id="top" class="hero" aria-labelledby="hero-title">
     <div class="container hero__grid">
@@ -55,11 +55,7 @@
 @code {
     [Parameter] public Profile? Profile { get; set; }
 
-    // Only absolute https links are rendered, so a bad config value can't inject a javascript: URL.
-    private string? CvUrl =>
-        Uri.TryCreate(Options.Value.CvUrl, UriKind.Absolute, out var uri) && uri.Scheme == Uri.UriSchemeHttps
-            ? uri.AbsoluteUri
-            : null;
+    private string? CvUrl => SafeUrl.Https(Links.Value.Cv);
 
     private async Task PrintAsync() => await JS.InvokeVoidAsync("site.printPage");
 }

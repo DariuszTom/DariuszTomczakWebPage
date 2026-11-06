@@ -1,5 +1,6 @@
 @implements IAsyncDisposable
 @inject IJSRuntime JS
+@inject IOptions<LinksOptions> Links
 
 <figure class="dbg">
     <figcaption class="dbg__bar">
@@ -79,7 +80,14 @@
                                     <span class="tk-str">@token.Text</span>
                                     break;
                                 case 'l':
-                                    <a class="tk-link" href="https://github.com/DariuszTom/ReceptyOksSolution" target="_blank" rel="noopener noreferrer">@token.Text</a>
+                                    if (RepoUrl is not null)
+                                    {
+                                        <a class="tk-link" href="@RepoUrl" target="_blank" rel="noopener noreferrer">@token.Text</a>
+                                    }
+                                    else
+                                    {
+                                        @token.Text
+                                    }
                                     break;
                                 default:
                                     @token.Text
@@ -114,6 +122,9 @@
 @code {
     private const int TickMs = 950;
     private const int HoldTicks = 3;
+
+    private string? RepoUrl =>
+        SafeUrl.Https(Links.Value.GitHub) is { } gitHub ? gitHub.TrimEnd('/') + "/ReceptyOksSolution" : null;
 
     private sealed record Token(char Kind, string Text);
     private sealed record Line(int Indent, Token[] Tokens);

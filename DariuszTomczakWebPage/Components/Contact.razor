@@ -1,3 +1,5 @@
+@inject IOptions<LinksOptions> Links
+
 <section id="contact" class="section" aria-labelledby="contact-title">
     <div class="container contact">
         <div class="contact__main">
@@ -6,27 +8,27 @@
                 Want to talk about something on this page, or compare notes on .NET, Blazor or MAUI? Drop me a line.
             </p>
             <ul class="contact__links">
-                @if (!string.IsNullOrWhiteSpace(Profile.Links.LinkedIn))
+                @if (LinkedIn is not null)
                 {
                     <li>
-                        <a class="row" href="@Profile.Links.LinkedIn" target="_blank" rel="noopener noreferrer">
+                        <a class="row" href="@LinkedIn" target="_blank" rel="noopener noreferrer">
                             <span class="icon-circle row__icon"><Icon Name="linkedin" Size="20" /></span>
                             <span class="row__text">
                                 <span class="row__label">LinkedIn</span>
-                                <span class="row__value">@Display(Profile.Links.LinkedIn)</span>
+                                <span class="row__value">@Display(LinkedIn)</span>
                             </span>
                             <span class="visually-hidden">(opens in a new tab)</span>
                         </a>
                     </li>
                 }
-                @if (!string.IsNullOrWhiteSpace(Profile.Links.GitHub))
+                @if (GitHub is not null)
                 {
                     <li>
-                        <a class="row" href="@Profile.Links.GitHub" target="_blank" rel="noopener noreferrer">
+                        <a class="row" href="@GitHub" target="_blank" rel="noopener noreferrer">
                             <span class="icon-circle row__icon"><Icon Name="github" Size="20" /></span>
                             <span class="row__text">
                                 <span class="row__label">GitHub</span>
-                                <span class="row__value">@Display(Profile.Links.GitHub)</span>
+                                <span class="row__value">@Display(GitHub)</span>
                             </span>
                             <span class="visually-hidden">(opens in a new tab)</span>
                         </a>
@@ -67,6 +69,10 @@
 
 @code {
     [Parameter, EditorRequired] public Profile Profile { get; set; } = null!;
+
+    private string? LinkedIn => SafeUrl.Https(Links.Value.LinkedIn);
+
+    private string? GitHub => SafeUrl.Https(Links.Value.GitHub);
 
     private static string Display(string url) =>
         Uri.TryCreate(url, UriKind.Absolute, out var uri)
