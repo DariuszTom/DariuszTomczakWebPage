@@ -35,5 +35,15 @@
 </section>
 
 @code {
-    private async Task GoBack() => await JS.InvokeVoidAsync("history.back");
+    private async Task GoBack()
+    {
+        try
+        {
+            await JS.InvokeVoidAsync("history.back");
+        }
+        catch (JSException)
+        {
+            // Browser history is unavailable; stay on the page.
+        }
+    }
 }

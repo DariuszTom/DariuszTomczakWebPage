@@ -69,5 +69,15 @@
 
     private string? LinkedIn => SafeUrl.Https(Links.Value.LinkedIn);
 
-    private async Task PrintAsync() => await JS.InvokeVoidAsync("site.printPage");
+    private async Task PrintAsync()
+    {
+        try
+        {
+            await JS.InvokeVoidAsync("site.printPage");
+        }
+        catch (JSException)
+        {
+            // Printing is best-effort; nothing to recover.
+        }
+    }
 }

@@ -110,7 +110,14 @@
     public async Task ObserveSectionsAsync()
     {
         _selfRef ??= DotNetObjectReference.Create(this);
-        await JS.InvokeVoidAsync("site.observeSections", _selfRef, Sections.Select(s => s.Id).ToArray());
+        try
+        {
+            await JS.InvokeVoidAsync("site.observeSections", _selfRef, Sections.Select(s => s.Id).ToArray());
+        }
+        catch (JSException)
+        {
+            // Section highlighting is a progressive enhancement; ignore script failures.
+        }
     }
 
     [JSInvokable]
