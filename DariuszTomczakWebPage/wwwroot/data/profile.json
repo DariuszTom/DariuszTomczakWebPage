@@ -5,7 +5,7 @@
     "summary": "Senior Full Stack Developer with expertise in C#, Java, and cloud technologies, specializing in application modernization and DevOps practices. Experienced in containerizing applications with Docker, migrating to cloud platforms (Nomad, AWS), and building robust CI/CD pipelines. Strong background in financial services with a passion for leveraging AI to streamline development workflows.",
     "location": "Kraków, Poland",
     "photoUrl": null,
-    "tagline": "Full stack developer with a background in financial services. I modernise applications, build CI/CD pipelines and use AI to take the busywork out of development, mostly in C# and .NET.",
+    "tagline": "MOTS with expertise in C#, Java, and cloud technologies, specializing in application modernization and DevOps practices. Experienced in containerizing applications with Docker, migrating to cloud platforms (Nomad, AWS), and building robust CI/CD pipelines. Strong background in financial services with a passion for leveraging AI to streamline development workflows.",
     "about": [
       "I'm a senior full stack developer working mostly in C# and .NET, with Java and Python when the job calls for it. What I enjoy most is application modernisation: containerising apps with Docker, moving them to the cloud and building the CI/CD pipelines that ship them reliably.",
       "I started in fund accounting at State Street, where automating my own work with Excel VBA turned into a career in software. These days I'm most interested in using AI and MCP servers to streamline development. Outside work I tinker with PC hardware and local LLMs, and build things in .NET, like ReceptyOks and this site."
@@ -403,87 +403,10 @@
       "featured": true,
       "icon": "book"
     },
-    {
-      "name": "DariuszTomczakWebPage",
-      "description": "This site: Blazor WebAssembly on .NET 10 with MudBlazor, hosted on Azure Static Web Apps and deployed from GitHub Actions with OIDC (no stored secrets).",
-      "technologies": [
-        "Blazor",
-        ".NET 10",
-        "MudBlazor",
-        "Azure",
-        "GitHub Actions"
-      ],
-      "repoUrl": null,
-      "liveUrl": null,
-      "subtitle": "Personal · Blazor WebAssembly",
-      "icon": "globe"
-    },
-    {
-      "name": "Microsoft Agent Framework Showcase",
-      "description": "Experiments with building AI agents in .NET using Microsoft Agent Framework.",
-      "technologies": [
-        "C#",
-        ".NET",
-        "AI agents"
-      ],
-      "repoUrl": "https://github.com/DariuszTom/MicrosoftAgentFrameworkShowCase",
-      "liveUrl": null,
-      "subtitle": "Personal · AI agents",
-      "icon": "bot"
-    },
-    {
-      "name": "WinForms with Blazor",
-      "description": "Showcase of hosting Blazor components inside a WinForms desktop application.",
-      "technologies": [
-        "Blazor",
-        "WinForms",
-        ".NET"
-      ],
-      "repoUrl": "https://github.com/DariuszTom/ShowCaseWinFormsWithBlazor",
-      "liveUrl": null,
-      "subtitle": "Personal · Showcase",
-      "icon": "code"
-    },
-    {
-      "name": "Docker ASP.NET Backend Service",
-      "description": "Virtualization and containerization of an IT environment (DevOps postgraduate studies).",
-      "technologies": [
-        "ASP.NET Core",
-        "Docker"
-      ],
-      "repoUrl": "https://github.com/DariuszTom/DockerAsp.net.BackendService",
-      "liveUrl": null,
-      "subtitle": "Personal · Showcase",
-      "icon": "code"
-    },
-    {
-      "name": "gRPC Demo",
-      "description": "gRPC services with a client example.",
-      "technologies": [
-        "C#",
-        "gRPC"
-      ],
-      "repoUrl": "https://github.com/DariuszTom/GrprcDemo",
-      "liveUrl": null,
-      "subtitle": "Personal · Showcase",
-      "icon": "code"
-    },
-    {
-      "name": "AsyncCommand for XAML",
-      "description": "Async commands for WPF projects.",
-      "technologies": [
-        "C#",
-        "WPF",
-        "MVVM"
-      ],
-      "repoUrl": "https://github.com/DariuszTom/AsyncCommandForXAML",
-      "liveUrl": null,
-      "subtitle": "Personal · Showcase",
-      "icon": "code"
-    },
+    
     {
       "name": "The Chronicles Of Myrtana: Archolos",
-      "description": "Community tester of a large fan-made expansion for the game Gothic II.",
+      "description": "Tester of a large fan-made expansion for the game Gothic II.",
       "technologies": [
         "QA",
         "Testing"
@@ -492,22 +415,8 @@
       "liveUrl": "https://kronikimyrtany.pl/",
       "subtitle": "Community · Game testing",
       "icon": "game"
-    },
-    {
-      "name": "OneTrackerApp",
-      "description": "CRUD application with a Xamarin.Forms mobile front end and a Blazor Server web front end, backed by a WCF service and SQL Server with EF Core.",
-      "technologies": [
-        "Xamarin.Forms",
-        "Blazor Server",
-        "WCF",
-        "SQL Server",
-        "EF Core"
-      ],
-      "repoUrl": null,
-      "liveUrl": null,
-      "subtitle": "Studies · Mobile and web",
-      "icon": "phone"
     }
+   
   ],
   "photos": [],
   "focus": [

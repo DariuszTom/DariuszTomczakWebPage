@@ -1,0 +1,58 @@
+@page "/about"
+@inject IProfileService ProfileService
+
+<PageTitle>About | Dariusz Tomczak</PageTitle>
+
+<section class="section about-page" aria-labelledby="about-title">
+    <div class="container about">
+        <div class="heading">
+            <span class="heading__bar" aria-hidden="true"></span>
+            <h1 id="about-title" tabindex="-1">About me</h1>
+        </div>
+        @if (_profile is not null)
+        {
+            @foreach (var paragraph in Paragraphs(_profile))
+            {
+                <p class="about__text">@paragraph</p>
+            }
+        }
+        else if (_failed)
+        {
+            <div class="status" role="alert">
+                <p>Sorry, the profile could not be loaded.</p>
+                <button type="button" class="status__retry" @onclick="LoadAsync">Try again</button>
+            </div>
+        }
+        else
+        {
+            <div class="status" aria-busy="true">
+                <MudProgressCircular Color="Color.Secondary" Indeterminate="true" Size="Size.Medium" />
+                <p class="visually-hidden">Loading profile…</p>
+            </div>
+        }
+        <a class="about__back" href="">← Back to home</a>
+    </div>
+</section>
+
+@code {
+    private Profile? _profile;
+    private bool _failed;
+
+    protected override Task OnInitializedAsync() => LoadAsync();
+
+    private async Task LoadAsync()
+    {
+        _failed = false;
+        try
+        {
+            _profile = await ProfileService.GetAsync();
+        }
+        catch (Exception ex) when (ex is HttpRequestException or System.Text.Json.JsonException or InvalidOperationException)
+        {
+            _failed = true;
+        }
+    }
+
+    private static IReadOnlyList<string> Paragraphs(Profile profile) =>
+        profile.Person.About is { Count: > 0 } about ? about : [profile.Person.Summary];
+}

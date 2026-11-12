@@ -1,6 +1,9 @@
 ﻿@page "/"
 @using DariuszTomczakWebPage.Layout
+@implements IAsyncDisposable
 @inject IProfileService ProfileService
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
 
 <PageTitle>Dariusz Tomczak – Senior Full Stack Developer</PageTitle>
 
@@ -11,7 +14,6 @@
     <Skills Profile="_profile" />
     <ExperienceTimeline Profile="_profile" />
     <Projects Profile="_profile" />
-    <About Profile="_profile" />
     <Contact Profile="_profile" />
 }
 else if (_failed)
@@ -60,7 +62,33 @@ else
         if (_profile is not null && !_observing && Layout is not null)
         {
             _observing = true;
+            await ScrollToFragmentAsync();
             await Layout.ObserveSectionsAsync();
+        }
+    }
+
+    // Sections render only after the profile loads, so links like /#skills from other pages need a late scroll.
+    private async Task ScrollToFragmentAsync()
+    {
+        var fragment = new Uri(Navigation.Uri).Fragment.TrimStart('#');
+        if (fragment.Length == 0)
+        {
+            return;
+        }
+        try
+        {
+            await JS.InvokeVoidAsync("site.scrollToId", fragment);
+        }
+        catch (JSException)
+        {
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_observing && Layout is not null)
+        {
+            await Layout.DisconnectSectionsAsync();
         }
     }
 }

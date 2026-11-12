@@ -1,6 +1,7 @@
 ﻿@inherits LayoutComponentBase
 @implements IAsyncDisposable
 @inject IJSRuntime JS
+@inject NavigationManager Navigation
 @inject IOptions<LinksOptions> Links
 
 <MudThemeProvider @ref="_themeProvider" Theme="_theme" @bind-IsDarkMode="_isDark" />
@@ -12,7 +13,7 @@
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="appbar no-print">
         <div class="container appbar__row">
-            <a class="logo" href="#top">
+            <a class="logo" href="@(IsHome ? "#top" : "")">
                 <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
                     <defs>
                         <mask id="dt-flap-bar">
@@ -55,10 +56,12 @@
             <div class="container tabs__row">
                 @foreach (var (id, label) in Sections)
                 {
-                    var active = id == _activeSection;
+                    var active = IsHome && id == _activeSection;
                     <a href="@($"#{id}")" class="tab @(active ? "tab--active" : null)"
                        aria-current="@(active ? "true" : null)" @onclick="() => _activeSection = id">@label</a>
                 }
+                <a href="about" class="tab @(IsAbout ? "tab--active" : null)"
+                   aria-current="@(IsAbout ? "page" : null)">About</a>
             </div>
         </nav>
     </header>
@@ -83,9 +86,14 @@
         ("skills", "Skills"),
         ("experience", "Experience"),
         ("projects", "Projects"),
-        ("about", "About"),
         ("contact", "Contact"),
     ];
+
+    private string RelativePath => Navigation.ToBaseRelativePath(Navigation.Uri).Split('#', '?')[0].TrimEnd('/');
+
+    private bool IsHome => RelativePath.Length == 0;
+
+    private bool IsAbout => RelativePath.Equals("about", StringComparison.OrdinalIgnoreCase);
 
     private readonly MudTheme _theme = SiteTheme.Create();
     private MudThemeProvider? _themeProvider;
@@ -117,6 +125,18 @@
         catch (JSException)
         {
             // Section highlighting is a progressive enhancement; ignore script failures.
+        }
+    }
+
+    public async Task DisconnectSectionsAsync()
+    {
+        _activeSection = null;
+        try
+        {
+            await JS.InvokeVoidAsync("site.disconnectSections");
+        }
+        catch (Exception ex) when (ex is JSException or JSDisconnectedException)
+        {
         }
     }
 

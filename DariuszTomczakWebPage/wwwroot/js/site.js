@@ -12,6 +12,13 @@
             window.print();
         },
 
+        scrollToId: function (id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView();
+            }
+        },
+
         // Reports the section currently under the sticky header back to .NET.
         // Active = last section whose top has passed 45% of the viewport height.
         observeSections: function (dotNetRef, ids) {
