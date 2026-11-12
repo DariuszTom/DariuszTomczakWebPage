@@ -10,6 +10,14 @@
     height: 48px;
 }
 
+.ph__logo {
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
 .ph__text {
     display: flex;
     flex: 1 1 auto;

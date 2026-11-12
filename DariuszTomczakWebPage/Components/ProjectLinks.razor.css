@@ -5,4 +5,47 @@
     margin-top: 16px;
     padding: 12px;
     border-top: 1px solid var(--c-divider);
+    align-items: center;
+}
+
+.steam-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 44px;
+    margin-left: 8px;
+    padding: 6px 16px 6px 12px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 8px;
+    background: linear-gradient(135deg, #171a21, #1b2838 60%, #2a475e);
+    color: #ffffff !important;
+    text-decoration: none;
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.steam-badge:hover {
+    border-color: #66c0f4;
+    box-shadow: 0 0 0 1px #66c0f4;
+}
+
+.steam-badge__logo {
+    flex: none;
+}
+
+.steam-badge__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.steam-badge__text small {
+    color: #c7d5e0;
+    font-size: 10px;
+    letter-spacing: .04em;
+}
+
+.steam-badge__text strong {
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: .12em;
 }

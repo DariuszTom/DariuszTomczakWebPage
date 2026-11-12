@@ -1,5 +1,12 @@
 <div class="ph">
-    <span class="icon-circle ph__icon"><Icon Name="@(Project.Icon ?? "code")" Size="24" /></span>
+    @if (!string.IsNullOrWhiteSpace(Project.Logo))
+    {
+        <img class="ph__logo" src="@Project.Logo" alt="" width="48" height="48" loading="lazy" decoding="async" />
+    }
+    else
+    {
+        <span class="icon-circle ph__icon"><Icon Name="@(Project.Icon ?? "code")" Size="24" /></span>
+    }
     <div class="ph__text">
         <h3 class="@(Large ? "ph__title--lg" : null)">@Project.Name</h3>
         @if (!string.IsNullOrWhiteSpace(Project.Subtitle))

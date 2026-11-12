@@ -45,6 +45,30 @@
                         </ul>
                     </div>
                     <p class="project__desc project__desc--sm">@project.Description</p>
+                    @if (project.Awards is { Count: > 0 } awards)
+                    {
+                        <ul class="awards" aria-label="Awards">
+                            @foreach (var award in awards)
+                            {
+                                var won = award.Result.Equals("Winner", StringComparison.OrdinalIgnoreCase);
+                                <li class="award @(won ? "award--won" : null)">
+                                    <svg class="award__laurel" width="44" height="44" viewBox="0 0 48 48" fill="currentColor" aria-hidden="true" focusable="false">
+                                        @foreach (var angle in LaurelAngles)
+                                        {
+                                            <ellipse cx="24" cy="4" rx="2.2" ry="4.4" transform="rotate(@(-angle) 24 24) translate(0 2) rotate(-35 24 4)" />
+                                            <ellipse cx="24" cy="4" rx="2.2" ry="4.4" transform="rotate(@angle 24 24) translate(0 2) rotate(35 24 4)" />
+                                        }
+                                        <text x="24" y="28" text-anchor="middle" font-size="10" font-weight="700">@(award.Year?.Length >= 2 ? $"'{award.Year[^2..]}" : "★")</text>
+                                    </svg>
+                                    <div class="award__text">
+                                        <strong>@award.Title</strong>
+                                        <span>@award.Event</span>
+                                        <span class="award__result">@award.Result@(award.Year is null ? null : $" · {award.Year}")</span>
+                                    </div>
+                                </li>
+                            }
+                        </ul>
+                    }
                     <ProjectLinks Project="project" />
                 </article>
             }
@@ -54,4 +78,7 @@
 
 @code {
     [Parameter, EditorRequired] public Profile Profile { get; set; } = null!;
+
+    // Leaf positions (degrees from the bottom) for each half of the laurel wreath.
+    private static readonly int[] LaurelAngles = [200, 230, 260, 290, 320];
 }

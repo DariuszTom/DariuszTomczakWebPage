@@ -48,6 +48,9 @@ public sealed record Certification(string Name, string Issuer, string? Date, str
 
 /// <param name="Icon">Icon key understood by the site (e.g. "book", "globe", "bot").</param>
 /// <param name="Featured">Featured projects get a large card with <see cref="Features"/>.</param>
+/// <param name="Logo">Optional image path (relative to the app base); shown instead of <see cref="Icon"/>.</param>
+/// <param name="SteamUrl">Optional Steam store page; rendered as a Steam badge.</param>
+/// <param name="Awards">Awards and nominations the project received.</param>
 public sealed record Project(
     string Name,
     string Description,
@@ -58,7 +61,13 @@ public sealed record Project(
     string? Status = null,
     IReadOnlyList<string>? Features = null,
     bool Featured = false,
-    string? Icon = null);
+    string? Icon = null,
+    string? Logo = null,
+    string? SteamUrl = null,
+    IReadOnlyList<Award>? Awards = null);
+
+/// <param name="Result">For example "Winner" or "Nominee".</param>
+public sealed record Award(string Title, string Event, string Result, string? Year = null);
 
 /// <summary>A short "what I do" card in the About section.</summary>
 public sealed record FocusArea(string Title, string Description, string? Icon = null);

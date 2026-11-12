@@ -401,7 +401,8 @@
         "Biometric sign-in and speech-to-text"
       ],
       "featured": true,
-      "icon": "book"
+      "icon": "book",
+      "logo": "images/projects/receptyoks.svg"
     },
     
     {
@@ -413,8 +414,30 @@
       ],
       "repoUrl": null,
       "liveUrl": "https://kronikimyrtany.pl/",
-      "subtitle": "Community · Game testing",
-      "icon": "game"
+      "subtitle": "QA/Game testing",
+      "icon": "game",
+      "logo": "images/projects/archolos.png",
+      "steamUrl": "https://store.steampowered.com/app/1467450/Kroniki_Myrtany_Archolos/",
+      "awards": [
+        {
+          "title": "Mod of the Year",
+          "event": "ModDB",
+          "result": "Winner",
+          "year": "2021"
+        },
+        {
+          "title": "Best Polish Game",
+          "event": "Digital Dragons",
+          "result": "Nominee",
+          "year": "2021"
+        },
+        {
+          "title": "Best Mod 2011–2021",
+          "event": "ModDB 20th Anniversary",
+          "result": "Winner",
+          "year": "2021"
+        }
+      ]
     }
    
   ],
