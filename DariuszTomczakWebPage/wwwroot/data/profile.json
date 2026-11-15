@@ -8,7 +8,8 @@
     "tagline": "MOTS with expertise in C#, Java, and cloud technologies, specializing in application modernization and DevOps practices. Experienced in containerizing applications with Docker, migrating to cloud platforms (Nomad, AWS), and building robust CI/CD pipelines. Strong background in financial services with a passion for leveraging AI to streamline development workflows.",
     "about": [
       "I'm a senior full stack developer working mostly in C# and .NET, with Java and Python when the job calls for it. What I enjoy most is application modernisation: containerising apps with Docker, moving them to the cloud and building the CI/CD pipelines that ship them reliably.",
-      "I started in fund accounting at State Street, where automating my own work with Excel VBA turned into a career in software. These days I'm most interested in using AI and MCP servers to streamline development. Outside work I tinker with PC hardware and local LLMs, and build things in .NET, like ReceptyOks and this site."
+      "I started in fund accounting at State Street, where automating my own work with Excel VBA turned into a career in software. These days I'm most interested in using AI and MCP servers to streamline development. Outside work I tinker with PC hardware and local LLMs, and build things in .NET, like ReceptyOks and this site.",
+      "My interest in programming began when I was seven, with a calculator I made in BASIC. That first project sparked years of experimenting: I went on to build websites with PHP, create game mods, and explore all kinds of programming. I've kept that curiosity ever since, and it still drives me to learn new technologies and make things."
     ],
     "stack": [
       "C#",

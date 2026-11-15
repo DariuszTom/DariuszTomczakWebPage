@@ -9,28 +9,33 @@
             <span class="heading__bar" aria-hidden="true"></span>
             <h1 id="about-title" tabindex="-1">About me</h1>
         </div>
-        @if (_profile is not null)
-        {
-            @foreach (var paragraph in Paragraphs(_profile))
-            {
-                <p class="about__text">@paragraph</p>
-            }
-        }
-        else if (_failed)
-        {
-            <div class="status" role="alert">
-                <p>Sorry, the profile could not be loaded.</p>
-                <button type="button" class="status__retry" @onclick="LoadAsync">Try again</button>
+        <div class="about__content">
+            <div class="about__copy">
+                @if (_profile is not null)
+                {
+                    @foreach (var paragraph in Paragraphs(_profile))
+                    {
+                        <p class="about__text">@paragraph</p>
+                    }
+                }
+                else if (_failed)
+                {
+                    <div class="status" role="alert">
+                        <p>Sorry, the profile could not be loaded.</p>
+                        <button type="button" class="status__retry" @onclick="LoadAsync">Try again</button>
+                    </div>
+                }
+                else
+                {
+                    <div class="status" aria-busy="true">
+                        <MudProgressCircular Color="Color.Secondary" Indeterminate="true" Size="Size.Medium" />
+                        <p class="visually-hidden">Loading profile…</p>
+                    </div>
+                }
+                <a class="about__back" href="">← Back to home</a>
             </div>
-        }
-        else
-        {
-            <div class="status" aria-busy="true">
-                <MudProgressCircular Color="Color.Secondary" Indeterminate="true" Size="Size.Medium" />
-                <p class="visually-hidden">Loading profile…</p>
-            </div>
-        }
-        <a class="about__back" href="">← Back to home</a>
+            <img class="about__image" src="images/about-dariusz.jpg" alt="Dariusz at a technology conference" loading="lazy" decoding="async" />
+        </div>
     </div>
 </section>
 
