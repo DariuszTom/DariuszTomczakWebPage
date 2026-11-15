@@ -1,0 +1,77 @@
+name: Deploy to Azure Static Web Apps
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-azure
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: Master_ENV
+      url: ${{ steps.url.outputs.site }}
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install .NET
+        uses: actions/setup-dotnet@26b0ec14cb23fa6904739307f278c14f94c95bf1 # v5.4.0
+        with:
+          dotnet-version: 11.0.x
+
+      - name: Install WebAssembly tools
+        run: dotnet workload install wasm-tools
+
+      - name: Publish
+        run: dotnet publish DariuszTomczakWebPage/DariuszTomczakWebPage.csproj --configuration Release --output publish
+
+      - name: Azure login (OIDC)
+        uses: azure/login@a641126d1b8aa4d1fa005f4f92df94a3a4c4c906 # v3.1.0
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Get deployment token
+        id: swa
+        env:
+          SWA_NAME: ${{ vars.SWA_NAME }}
+          SWA_RESOURCE_GROUP: ${{ vars.SWA_RESOURCE_GROUP }}
+        run: |
+          token=$(az staticwebapp secrets list --name "$SWA_NAME" --resource-group "$SWA_RESOURCE_GROUP" --query "properties.apiKey" -o tsv)
+          echo "::add-mask::$token"
+          echo "token=$token" >> "$GITHUB_OUTPUT"
+
+      - name: Deploy
+        uses: Azure/static-web-apps-deploy@1a947af9992250f3bc2e68ad0754c0b0c11566c9 # v1
+        with:
+          azure_static_web_apps_api_token: ${{ steps.swa.outputs.token }}
+          action: upload
+          app_location: publish/wwwroot
+          output_location: ""
+          skip_app_build: true
+          skip_api_build: true
+
+      - name: Site URL
+        id: url
+        env:
+          SWA_NAME: ${{ vars.SWA_NAME }}
+          SWA_RESOURCE_GROUP: ${{ vars.SWA_RESOURCE_GROUP }}
+        run: |
+          host=$(az staticwebapp show --name "$SWA_NAME" --resource-group "$SWA_RESOURCE_GROUP" --query defaultHostname -o tsv)
+          echo "site=https://$host" >> "$GITHUB_OUTPUT"
+          echo "Deployed to https://$host" >> "$GITHUB_STEP_SUMMARY"

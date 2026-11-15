@@ -106,6 +106,7 @@ Skills listed in `tools/LinkedInImport.ignore` are never imported.
 | Workflow | Purpose |
 |----------|---------|
 | `dotnet-desktop.yml` | Restores, builds, tests and publishes on pushes and PRs to `master`. Uploads `wwwroot` as an artifact. |
+| `deploy-azure.yml` | Manual (**Run workflow**) deploy to Azure Static Web Apps. Logs in with OIDC using the `Master_ENV` environment variables `AZURE_CLIENT_ID`, `AZURE_TENANT_ID`, `AZURE_SUBSCRIPTION_ID`, `SWA_NAME` and `SWA_RESOURCE_GROUP`. |
 | `codeql.yml` | CodeQL analysis of C#, JavaScript/TypeScript and Actions workflows. |
 | `secrets-scan.yml` | TruffleHog scan of new commits, plus a weekly full-history scan. |
 | `dependabot.yml` | Weekly updates for NuGet packages and GitHub Actions. |
