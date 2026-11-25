@@ -405,7 +405,25 @@
       "icon": "book",
       "logo": "images/projects/receptyoks.svg"
     },
-    
+    {
+      "name": "Blow.AI.Mind",
+      "description": "A .NET library, published on NuGet, that generates fictional Excel workbooks for testing AI agents against prompt injection. It hides injections in cells, comments, hidden sheets, document properties and defined names, and records every marker in a manifest so you can check whether an agent followed them.",
+      "technologies": [
+        "C#",
+        ".NET",
+        "ClosedXML",
+        "Bogus",
+        "NuGet",
+        "GitHub Actions",
+        "AI security"
+      ],
+      "repoUrl": "https://github.com/DariuszTom/Blow.AI.Mind",
+      "liveUrl": "https://www.nuget.org/packages/Blow.AI.Mind",
+      "subtitle": "Open source · .NET library · NuGet",
+      "icon": "bot",
+      "logo": "images/projects/blow-ai-mind.svg"
+    },
+
     {
       "name": "The Chronicles Of Myrtana: Archolos",
       "description": "Tester of a large fan-made expansion for the game Gothic II.",
