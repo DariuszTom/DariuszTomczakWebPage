@@ -19,12 +19,26 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png" />
     <link href="DariuszTomczakWebPage.styles.css" rel="stylesheet" />
     <script type="importmap"></script>
+    <noscript>
+        <style>
+            .splash-board-wrap, .splash-progress, .splash-sections { display: none; }
+            .splash-subtitle { opacity: 1; }
+        </style>
+    </noscript>
 </head>
 
 <body>
     <main id="splash" aria-busy="true">
         <div class="splash-inner">
             <h1 class="splash-sr">Dariusz Tomczak, Senior Full Stack Developer</h1>
+            <noscript>
+                <div class="splash-noscript">
+                    <p class="splash-noscript-name" aria-hidden="true">Dariusz Tomczak</p>
+                    <p class="splash-noscript-title">JavaScript is turned off</p>
+                    <p>This site is a Blazor WebAssembly app, so it needs JavaScript to show my experience and projects. Turn JavaScript on and reload the page, or use the links below to see my CV and profiles.</p>
+                    <p><a class="splash-noscript-cv" href="https://drive.google.com/file/d/1jANqlEM8kyozg2_pgdgH9N6e0Mdyo3f9/view?usp=sharing" target="_blank" rel="noopener noreferrer">Open my CV (PDF)</a></p>
+                </div>
+            </noscript>
             <div class="splash-board-wrap" aria-hidden="true">
                 <div class="splash-board"></div>
             </div>

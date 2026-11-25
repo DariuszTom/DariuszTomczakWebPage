@@ -210,3 +210,37 @@
         justify-content: center;
     }
 
+
+/* Shown only when JavaScript is disabled (see <noscript> in index.html). */
+.splash-noscript {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #DCE4EE;
+}
+
+    .splash-noscript p {
+        margin: 0;
+    }
+
+.splash-noscript-name {
+    font-size: clamp(36px, 8vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.splash-noscript-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--splash-accent);
+}
+
+.splash-noscript-cv {
+    color: var(--splash-accent) !important;
+    font-weight: 600;
+}
